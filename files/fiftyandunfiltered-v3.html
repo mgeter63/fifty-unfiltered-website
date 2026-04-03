@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fifty and Unfiltered | Real Talk for Black Women Over 50</title>
+  <meta name="description" content="Fifty and Unfiltered is a blog and community for Black women over 50 navigating love, health, money, identity, and everything in between. No sugarcoating. Just real talk." />
+  <meta name="keywords" content="Black women over 50, African American women over 50, women over 50 blog, life after 50 Black women, dating after 50, menopause Black women, self-worth women over 50, empowerment women of color, Mary Geter, Fifty and Unfiltered" />
+  <meta name="author" content="Mary Geter" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.fiftyandunfiltered.com/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.fiftyandunfiltered.com/" />
+  <meta property="og:title" content="Fifty and Unfiltered | Real Talk for Black Women Over 50" />
+  <meta property="og:description" content="A bold, honest space for Black women over 50. Real conversations about love, health, money, and becoming who you were always meant to be." />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"Blog","name":"Fifty and Unfiltered","description":"A blog and community for Black women over 50 navigating love, health, identity, and life on their own terms.","url":"https://www.fiftyandunfiltered.com","author":{"@type":"Person","name":"Mary Geter"},"sponsor":{"@type":"Organization","name":"Chat Chew and Do Empowerment Women Group"}}</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    :root{
+      --lav:#8B6FB5;--lav-mid:#7A5EA4;--lav-deep:#5C4480;--lav-soft:#B49DD0;
+      --lav-pale:#EDE5F8;--lav-ghost:#F6F2FC;--honey:#D4A843;--honey-lt:#E8C26A;
+      --honey-dk:#A07E2A;--whisper:#FAF7FF;--plum:#2D1F42;--plum-mid:#3D2C55;
+      --cream:#FFFDF9;--lilac:#D8CAF0;--text:#2D1F42;--text-s:#6B5A80;--text-m:#9E8FB0;
+      --nav-h:70px;
+    }
+    html{scroll-behavior:smooth;}
+    body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--whisper);line-height:1.75;overflow-x:hidden;}
+    h1,h2,h3{font-family:'Cormorant Garamond',serif;line-height:1.15;font-weight:600;}
+    a{color:inherit;text-decoration:none;}
+    img{max-width:100%;display:block;width:100%;height:100%;object-fit:cover;}
+    button{cursor:pointer;border:none;outline:none;font-family:inherit;}
+
+    /* PAGE SYSTEM */
+    .page{display:none;min-height:100vh;}
+    .page.active{display:block;}
+
+    /* NAV */
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);background:rgba(250,247,255,0.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--lilac);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;}
+    .nav-logo{cursor:pointer;}
+    .nav-logo-main{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-weight:600;color:var(--lav-deep);line-height:1;}
+    .nav-logo-main em{font-style:italic;color:var(--honey-dk);}
+    .nav-logo-sub{font-size:0.58rem;font-weight:500;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-m);}
+    .nav-links{display:flex;align-items:center;gap:0.15rem;list-style:none;}
+    .nav-links a{font-size:0.8rem;font-weight:400;letter-spacing:0.05em;color:var(--text-s);padding:0.45rem 0.85rem;border-radius:100px;transition:all 0.2s;cursor:pointer;}
+    .nav-links a:hover,.nav-links a.active{color:var(--lav-deep);background:var(--lav-pale);}
+    .nav-cta{background:var(--lav)!important;color:#fff!important;font-weight:500!important;padding:0.45rem 1.2rem!important;border-radius:100px!important;}
+    .nav-cta:hover{background:var(--lav-mid)!important;}
+    .hamburger{display:none;background:none;color:var(--lav-deep);font-size:1.4rem;cursor:pointer;padding:0.5rem;}
+    .mob-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--whisper);border-bottom:1px solid var(--lilac);z-index:999;padding:0.5rem 0 1.5rem;}
+    .mob-menu.open{display:block;}
+    .mob-menu a{display:block;font-size:0.95rem;color:var(--text-s);padding:0.75rem 2rem;cursor:pointer;transition:all 0.2s;}
+    .mob-menu a:hover{color:var(--lav-deep);background:var(--lav-ghost);}
+
+    /* RIBBON */
+    .ribbon{background:linear-gradient(135deg,var(--honey),var(--honey-lt));padding:0.55rem 2rem;text-align:center;}
+    .ribbon p{font-size:0.75rem;font-weight:500;letter-spacing:0.06em;color:var(--plum);}
+    .ribbon a{text-decoration:underline;cursor:pointer;font-weight:600;}
+
+    .page-wrap{padding-top:var(--nav-h);}
+
+    /* HERO */
+    .hero{min-height:91vh;background:var(--lav-ghost);display:grid;grid-template-columns:1fr 1fr;align-items:center;position:relative;overflow:hidden;}
+    .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 0% 100%,rgba(212,168,67,.12) 0%,transparent 60%),radial-gradient(ellipse 40% 60% at 100% 0%,rgba(139,111,181,.15) 0%,transparent 60%);pointer-events:none;}
+    .hero-left{position:relative;z-index:2;padding:5rem 3rem 5rem 6vw;}
+    .hero-tag{display:inline-flex;align-items:center;gap:0.6rem;background:var(--lav-pale);border:1px solid var(--lilac);border-radius:100px;padding:0.35rem 1rem;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--lav-mid);margin-bottom:2rem;}
+    .tag-dot{width:6px;height:6px;border-radius:50%;background:var(--honey);flex-shrink:0;}
+    .hero h1{font-size:clamp(2.8rem,5.5vw,4.8rem);color:var(--plum);margin-bottom:1.5rem;line-height:1.08;}
+    .hero h1 em{font-style:italic;color:var(--lav);}
+    .hero h1 .hw{color:var(--honey-dk);}
+    .hero-desc{font-size:1.05rem;color:var(--text-s);max-width:460px;line-height:1.8;margin-bottom:1.5rem;}
+    .hero-qpill{display:inline-flex;align-items:flex-start;gap:0.75rem;background:#fff;border:1px solid var(--lilac);border-radius:16px;padding:1rem 1.25rem;margin-bottom:2.5rem;max-width:420px;box-shadow:0 2px 20px rgba(139,111,181,.08);}
+    .qmark{font-family:'Cormorant Garamond',serif;font-size:3rem;line-height:0.8;color:var(--lav-soft);flex-shrink:0;margin-top:4px;}
+    .hero-qpill p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.05rem;color:var(--text-s);line-height:1.5;}
+    .hero-qpill cite{display:block;font-family:'DM Sans',sans-serif;font-style:normal;font-size:0.7rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--honey-dk);margin-top:0.4rem;}
+    .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+    .hero-right{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;padding:4rem 4rem 4rem 2rem;}
+    .hero-card{background:#fff;border-radius:28px;padding:2.5rem;border:1px solid var(--lilac);box-shadow:0 8px 40px rgba(139,111,181,.12);max-width:380px;width:100%;}
+    .hero-card-tag{display:inline-block;background:var(--lav-pale);color:var(--lav-mid);font-size:0.68rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:0.3rem 0.85rem;border-radius:100px;margin-bottom:1.25rem;}
+    .hero-card-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--plum);margin-bottom:0.75rem;line-height:1.25;}
+    .hero-card-body{font-size:0.88rem;color:var(--text-s);line-height:1.7;margin-bottom:1.5rem;}
+    .hca{display:flex;align-items:center;gap:0.75rem;}
+    .hca-av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--lav-pale),var(--lav-soft));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--lav-deep);flex-shrink:0;border:2px solid var(--lilac);}
+    .hca-name{font-size:0.82rem;font-weight:500;color:var(--text);}
+    .hca-role{font-size:0.72rem;color:var(--text-m);}
+
+    /* BUTTONS */
+    .btn-lav{display:inline-block;background:var(--lav);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.04em;padding:0.85rem 2rem;border-radius:100px;cursor:pointer;transition:all 0.2s;border:none;}
+    .btn-lav:hover{background:var(--lav-mid);transform:translateY(-2px);}
+    .btn-ghost{display:inline-block;background:transparent;color:var(--lav-deep);font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;padding:0.85rem 2rem;border-radius:100px;cursor:pointer;border:1.5px solid var(--lav-soft);transition:all 0.2s;}
+    .btn-ghost:hover{background:var(--lav-pale);border-color:var(--lav);transform:translateY(-2px);}
+
+    /* SECTION BASE */
+    section{padding:5rem 2rem;}
+    .si{max-width:1100px;margin:0 auto;}
+    .eyebrow{display:inline-flex;align-items:center;gap:0.6rem;font-size:0.7rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--honey-dk);margin-bottom:0.85rem;}
+    .eyebrow::before{content:'';width:28px;height:2px;background:var(--honey);border-radius:2px;}
+    .sh2{font-size:clamp(1.9rem,3.5vw,3rem);font-weight:600;color:var(--plum);margin-bottom:0.75rem;line-height:1.15;}
+    .sh2 em{font-style:italic;color:var(--lav);}
+    .ssub{font-size:1rem;color:var(--text-s);max-width:520px;line-height:1.8;margin-bottom:3rem;}
+
+    /* TOPICS */
+    .topics-section{background:var(--cream);}
+    .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+    .tcard{background:#fff;border:1px solid var(--lilac);border-radius:20px;padding:2rem 1.75rem;transition:all 0.2s;}
+    .tcard:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(139,111,181,.12);border-color:var(--lav-soft);}
+    .tcard-ico{font-size:1.75rem;margin-bottom:1rem;display:block;}
+    .tcard h3{font-family:'DM Sans',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--lav-deep);margin-bottom:0.5rem;}
+    .tcard p{font-size:0.88rem;color:var(--text-s);line-height:1.65;}
+    .tpill{display:inline-block;background:var(--lav-pale);color:var(--lav-mid);font-size:0.65rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;padding:0.2rem 0.65rem;border-radius:100px;margin-top:0.85rem;}
+
+    /* BLOG CARDS — HOME PREVIEW */
+    .blog-section{background:var(--whisper);}
+    .bgrid-home{display:grid;grid-template-columns:1.4fr 1fr;grid-template-rows:auto auto;gap:1.25rem;}
+    .bcard{background:#fff;border:1px solid var(--lilac);border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.2s;}
+    .bcard:hover{transform:translateY(-4px);box-shadow:0 10px 36px rgba(139,111,181,.13);border-color:var(--lav-soft);}
+    .bcard-img{width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;}
+    .bcard-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+    .bcard:hover .bcard-img img{transform:scale(1.04);}
+    .bcard-img-ph{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.5rem;}
+    .ph-icon{font-size:1.5rem;opacity:0.5;}
+    .ph-text{font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;opacity:0.5;}
+    .bcard-body{padding:1.5rem 1.75rem 1.75rem;}
+    .bcat{display:inline-block;font-size:0.65rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--honey-dk);background:rgba(212,168,67,.1);border:1px solid rgba(212,168,67,.2);padding:0.25rem 0.75rem;border-radius:100px;margin-bottom:0.85rem;}
+    .bcard h3{font-size:1.1rem;font-weight:600;color:var(--plum);margin-bottom:0.6rem;line-height:1.3;}
+    .bcard p{font-size:0.88rem;color:var(--text-s);line-height:1.7;margin-bottom:1rem;}
+    .bmeta{font-size:0.7rem;color:var(--text-m);letter-spacing:0.06em;margin-bottom:0.75rem;}
+    .bread{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:500;color:var(--lav-mid);transition:gap 0.2s;}
+    .bread:hover{gap:0.7rem;}
+
+    /* FEATURED BLOG CARD */
+    .bcard-feat{grid-row:span 2;background:var(--plum);border-color:var(--plum-mid);}
+    .bcard-feat .bcard-img{aspect-ratio:16/7;}
+    .bcard-feat .bcard-body{padding:2rem 2.5rem 2.5rem;}
+    .bcard-feat .bcat{color:var(--honey-lt);background:rgba(212,168,67,.15);border-color:rgba(212,168,67,.25);}
+    .bcard-feat h3{font-size:clamp(1.3rem,2.5vw,1.8rem);color:#fff;}
+    .bcard-feat p{color:rgba(255,255,255,.6);}
+    .bcard-feat .bmeta{color:rgba(255,255,255,.35);}
+    .bcard-feat .bread{color:var(--honey-lt);}
+    .bcard-feat .bcard-img-ph{background:var(--plum-mid);}
+
+    /* ABOUT STRIP */
+    .about-strip{background:var(--lav-ghost);}
+    .as-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+    .aphoto{background:linear-gradient(145deg,var(--lav-pale),var(--lilac));border-radius:28px;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border:1px solid var(--lilac);}
+    .aphoto img{width:100%;height:100%;object-fit:cover;}
+    .aphoto-ph{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--lav-soft);text-align:center;padding:2rem;line-height:1.8;font-size:1rem;}
+    .aphoto-label{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--lilac);border-radius:100px;padding:0.4rem 1.1rem;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--lav-mid);white-space:nowrap;}
+    .pq{background:#fff;border-left:3px solid var(--honey);border-radius:0 14px 14px 0;padding:1.25rem 1.5rem;margin:1.5rem 0;}
+    .pq p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--lav-deep);line-height:1.5;margin:0;}
+
+    /* NEWSLETTER */
+    .nl-section{background:var(--plum);position:relative;overflow:hidden;}
+    .nl-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 0%,rgba(212,168,67,.15) 0%,transparent 60%),radial-gradient(ellipse 50% 60% at 0% 100%,rgba(139,111,181,.2) 0%,transparent 60%);}
+    .nl-inner{max-width:620px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+    .nl-inner .eyebrow{color:var(--honey-lt);justify-content:center;}
+    .nl-inner .eyebrow::before{background:var(--honey-lt);}
+    .nl-inner h2{color:#fff;font-size:clamp(2rem,4vw,3rem);margin-bottom:1rem;}
+    .nl-inner h2 em{color:var(--lav-soft);}
+    .nl-inner p{color:rgba(255,255,255,.55);font-size:1rem;margin-bottom:2.5rem;line-height:1.8;}
+    .nl-form{display:flex;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:100px;overflow:hidden;max-width:460px;margin:0 auto 1rem;}
+    .nl-form input{flex:1;padding:0.9rem 1.5rem;background:transparent;border:none;color:#fff;font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;}
+    .nl-form input::placeholder{color:rgba(255,255,255,.35);}
+    .nl-form button{background:var(--honey);color:var(--plum);font-family:'DM Sans',sans-serif;font-size:0.82rem;font-weight:600;padding:0.9rem 1.75rem;border-radius:100px;margin:4px;cursor:pointer;transition:background 0.2s;border:none;white-space:nowrap;}
+    .nl-form button:hover{background:var(--honey-lt);}
+    .nl-priv{font-size:0.72rem;color:rgba(255,255,255,.25);}
+    .nl-ok{background:rgba(212,168,67,.15);border:1px solid rgba(212,168,67,.3);color:var(--honey-lt);padding:0.85rem 1.5rem;border-radius:12px;font-size:0.9rem;display:none;margin-top:1rem;}
+    .nl-ok.show{display:block;}
+
+    /* BLOG PAGE */
+    .bp-hero{background:var(--lav-ghost);padding:5rem 2rem 3.5rem;text-align:center;}
+    .bp-hero h1{font-size:clamp(2rem,5vw,3.5rem);color:var(--plum);margin-bottom:0.75rem;}
+    .bp-hero h1 em{font-style:italic;color:var(--lav);}
+    .bp-hero p{font-size:1rem;color:var(--text-s);max-width:440px;margin:0 auto;}
+    .bfilters{display:flex;gap:0.5rem;flex-wrap:wrap;justify-content:center;padding:2rem 2rem 0;max-width:800px;margin:0 auto;}
+    .fbtn{font-size:0.75rem;font-weight:500;color:var(--text-s);background:#fff;border:1px solid var(--lilac);border-radius:100px;padding:0.45rem 1.1rem;cursor:pointer;transition:all 0.2s;}
+    .fbtn:hover,.fbtn.active{background:var(--lav);border-color:var(--lav);color:#fff;}
+
+    /* BLOG PAGE GRID */
+    .bp-grid{max-width:1100px;margin:0 auto;padding:2.5rem 2rem 4rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.25rem;}
+    .bp-card{background:#fff;border:1px solid var(--lilac);border-radius:20px;overflow:hidden;cursor:pointer;transition:all 0.2s;}
+    .bp-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(139,111,181,.12);border-color:var(--lav-soft);}
+    .bp-card-img{width:100%;aspect-ratio:16/9;overflow:hidden;position:relative;}
+    .bp-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s;}
+    .bp-card:hover .bp-card-img img{transform:scale(1.04);}
+    .bp-card-img-ph{width:100%;aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.4rem;}
+    .bp-card-body{padding:1.4rem 1.6rem 1.75rem;}
+    .bp-card h3{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--plum);margin-bottom:0.55rem;line-height:1.25;}
+    .bp-card p{font-size:0.86rem;color:var(--text-s);line-height:1.68;margin-bottom:0.85rem;}
+    .bp-card .bmeta{font-size:0.7rem;color:var(--text-m);margin-bottom:0.65rem;}
+
+    /* BLOG POST READER */
+    #post-reader{display:none;}
+    #post-reader.active{display:block;}
+    .post-hero{background:var(--lav-ghost);padding:5rem 2rem 0;}
+    .post-hero-inner{max-width:800px;margin:0 auto;}
+    .post-cat-back{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;}
+    .back-btn{display:inline-flex;align-items:center;gap:0.5rem;font-size:0.82rem;font-weight:500;color:var(--lav-mid);cursor:pointer;transition:gap 0.2s;}
+    .back-btn:hover{gap:0.75rem;}
+    .post-hero-img{width:100%;aspect-ratio:16/7;border-radius:20px 20px 0 0;overflow:hidden;margin-top:2rem;position:relative;}
+    .post-hero-img img{width:100%;height:100%;object-fit:cover;}
+    .post-hero-img-ph{width:100%;aspect-ratio:16/7;border-radius:20px 20px 0 0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.75rem;}
+    .post-body-wrap{background:#fff;padding:3rem 2rem 5rem;}
+    .post-body-inner{max-width:700px;margin:0 auto;}
+    .post-title{font-size:clamp(1.8rem,4vw,3rem);color:var(--plum);margin-bottom:1rem;line-height:1.15;}
+    .post-title em{font-style:italic;color:var(--lav);}
+    .post-byline{display:flex;align-items:center;gap:0.75rem;margin-bottom:2.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--lilac);}
+    .post-av{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--lav-pale),var(--lav-soft));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:600;color:var(--lav-deep);border:2px solid var(--lilac);}
+    .post-by-name{font-size:0.88rem;font-weight:500;color:var(--text);}
+    .post-by-meta{font-size:0.75rem;color:var(--text-m);}
+    .post-content{font-size:1.02rem;color:var(--text);line-height:1.85;}
+    .post-content p{margin-bottom:1.5rem;}
+    .post-content h2{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--plum);margin:2.5rem 0 1rem;font-weight:600;}
+    .post-content h2 em{font-style:italic;color:var(--lav);}
+    .post-content strong{font-weight:600;color:var(--lav-deep);}
+    .post-content blockquote{background:var(--lav-ghost);border-left:3px solid var(--honey);border-radius:0 12px 12px 0;padding:1.25rem 1.5rem;margin:2rem 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--lav-deep);line-height:1.55;}
+
+    /* ABOUT PAGE */
+    .ab-hero{background:var(--lav-ghost);padding:6rem 2rem 5rem;position:relative;overflow:hidden;}
+    .ab-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 100% 50%,rgba(212,168,67,.1) 0%,transparent 65%);}
+    .ab-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;position:relative;z-index:1;}
+    .ab-inner h1{font-size:clamp(2.2rem,5vw,3.8rem);color:var(--plum);margin-bottom:1.5rem;}
+    .ab-inner h1 em{font-style:italic;color:var(--lav);}
+    .ab-inner p{font-size:1.02rem;color:var(--text-s);line-height:1.85;margin-bottom:1.1rem;}
+    .ab-inner blockquote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.3rem;color:var(--lav-deep);border-left:3px solid var(--honey);padding:1rem 0 1rem 1.5rem;border-radius:0 12px 12px 0;background:#fff;margin:1.75rem 0;line-height:1.55;}
+    .ab-photo{background:linear-gradient(145deg,var(--lav-pale),var(--lilac));border-radius:28px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;border:1px solid var(--lilac);position:relative;overflow:hidden;}
+    .ab-photo img{width:100%;height:100%;object-fit:cover;}
+    .ab-photo-ph{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--lav-soft);text-align:center;padding:2rem;line-height:1.8;font-size:1rem;}
+    .ab-photo-label{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);background:#fff;border:1px solid var(--lilac);border-radius:100px;padding:0.4rem 1.1rem;font-size:0.72rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--lav-mid);white-space:nowrap;}
+    .ab-mission{background:var(--cream);padding:5rem 2rem;}
+    .ab-mission-inner{max-width:800px;margin:0 auto;text-align:center;}
+    .ab-mission-inner h2{font-size:clamp(1.8rem,3.5vw,2.8rem);color:var(--plum);margin-bottom:1.25rem;}
+    .ab-mission-inner h2 em{font-style:italic;color:var(--lav);}
+    .ab-mission-inner p{font-size:1.02rem;color:var(--text-s);line-height:1.85;margin-bottom:1.1rem;}
+    .mqbox{background:var(--lav-ghost);border:1px solid var(--lilac);border-radius:20px;padding:2.5rem;margin-top:2.5rem;}
+    .mqbox p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.35rem;color:var(--lav-deep);line-height:1.55;margin:0;}
+    .mqbox cite{display:block;font-family:'DM Sans',sans-serif;font-style:normal;font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--honey-dk);margin-top:1rem;}
+    .ab-connect{background:var(--whisper);padding:5rem 2rem;}
+    .ab-connect-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;}
+    .ab-connect h2{font-size:clamp(1.5rem,3vw,2.2rem);color:var(--plum);margin-bottom:1.25rem;}
+    .ab-connect h2 em{font-style:italic;color:var(--lav);}
+    .ab-connect p{font-size:0.95rem;color:var(--text-s);line-height:1.8;margin-bottom:1rem;}
+    .ic{background:#fff;border:1px solid var(--lilac);border-radius:20px;padding:2rem;}
+    .ir{margin-bottom:1.25rem;}
+    .il{font-size:0.65rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--honey-dk);margin-bottom:0.2rem;}
+    .iv{font-size:0.92rem;color:var(--text);}
+    .schips{display:flex;gap:0.6rem;margin-top:1.5rem;flex-wrap:wrap;}
+    .schip{display:inline-flex;align-items:center;gap:0.4rem;background:var(--lav-pale);color:var(--lav-mid);border:1px solid var(--lilac);border-radius:100px;padding:0.4rem 0.9rem;font-size:0.75rem;font-weight:500;cursor:pointer;transition:all 0.2s;}
+    .schip:hover{background:var(--lav);color:#fff;}
+
+    /* SPONSOR */
+    .sp-hero{background:var(--plum);padding:6rem 2rem 5rem;text-align:center;position:relative;overflow:hidden;}
+    .sp-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(212,168,67,.12) 0%,transparent 70%);}
+    .sp-inner{position:relative;z-index:1;max-width:700px;margin:0 auto;}
+    .sp-inner h1{font-size:clamp(2rem,5vw,3.5rem);color:#fff;margin-bottom:1rem;}
+    .sp-inner h1 em{font-style:italic;color:var(--honey-lt);}
+    .sp-inner p{font-size:1.05rem;color:rgba(255,255,255,.55);line-height:1.8;}
+    .sp-body{background:var(--cream);padding:5rem 2rem;}
+    .sp-body-inner{max-width:900px;margin:0 auto;}
+    .orgbox{background:var(--plum);border-radius:20px;padding:2.5rem;text-align:center;margin-bottom:3.5rem;position:relative;overflow:hidden;}
+    .orgbox::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 50%,rgba(212,168,67,.12) 0%,transparent 70%);}
+    .orgbox-inner{position:relative;z-index:1;}
+    .orgname{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,3vw,2.5rem);font-weight:600;color:var(--honey-lt);line-height:1.2;margin-bottom:0.5rem;}
+    .orgacro{font-size:0.72rem;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,.35);}
+    .sp-body-inner h2{font-size:clamp(1.5rem,3vw,2.2rem);color:var(--plum);margin-bottom:1.1rem;}
+    .sp-body-inner h2 em{font-style:italic;color:var(--lav);}
+    .sp-body-inner p{font-size:1rem;color:var(--text-s);line-height:1.85;margin-bottom:1.1rem;}
+    .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin:2.5rem 0;}
+    .pcrd{background:#fff;border:1px solid var(--lilac);border-radius:20px;padding:2rem 1.75rem;text-align:center;transition:all 0.2s;}
+    .pcrd:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(139,111,181,.1);}
+    .pcrd-ico{font-size:2.2rem;margin-bottom:1rem;display:block;}
+    .pcrd h3{font-family:'DM Sans',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--lav-mid);margin-bottom:0.65rem;}
+    .pcrd p{font-size:0.88rem;color:var(--text-s);line-height:1.65;}
+    .cbox{background:var(--lav-ghost);border:1px solid var(--lilac);border-radius:20px;padding:2.5rem;margin-top:2.5rem;}
+    .cbox h2{margin-bottom:1rem;}
+    .cbox-btns{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.75rem;}
+
+    /* DONATE */
+    .don-hero{background:linear-gradient(135deg,var(--lav) 0%,var(--lav-mid) 100%);padding:6rem 2rem 5rem;text-align:center;position:relative;overflow:hidden;}
+    .don-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 80% 20%,rgba(212,168,67,.2) 0%,transparent 60%);}
+    .don-inner{position:relative;z-index:1;max-width:640px;margin:0 auto;}
+    .don-inner h1{font-size:clamp(2rem,5vw,3.5rem);color:#fff;margin-bottom:1rem;}
+    .don-inner p{font-size:1.05rem;color:rgba(255,255,255,.75);line-height:1.8;}
+    .don-body{background:var(--whisper);padding:5rem 2rem;}
+    .don-body-inner{max-width:680px;margin:0 auto;text-align:center;}
+    .don-body-inner h2{font-size:clamp(1.5rem,3vw,2.2rem);color:var(--plum);margin-bottom:1rem;}
+    .don-body-inner p{font-size:0.98rem;color:var(--text-s);line-height:1.8;margin-bottom:1rem;}
+    .amtgrid{display:flex;gap:0.85rem;justify-content:center;flex-wrap:wrap;margin:2.25rem 0 1.5rem;}
+    .amtbtn{background:#fff;border:1.5px solid var(--lilac);border-radius:14px;font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--plum);padding:0.85rem 1.75rem;min-width:110px;cursor:pointer;transition:all 0.2s;}
+    .amtbtn:hover,.amtbtn.sel{background:var(--lav);border-color:var(--lav);color:#fff;}
+    .cstrow{display:flex;background:#fff;border:1.5px solid var(--lilac);border-radius:14px;overflow:hidden;max-width:340px;margin:0 auto 2rem;transition:border-color 0.2s;}
+    .cstrow:focus-within{border-color:var(--lav);}
+    .cstpfx{background:var(--lav-ghost);color:var(--lav-mid);font-size:1.1rem;font-weight:500;padding:0.85rem 1rem;border-right:1px solid var(--lilac);}
+    .cstrow input{flex:1;padding:0.85rem 1rem;border:none;outline:none;font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--plum);background:transparent;}
+    .don-btn{display:block;background:linear-gradient(135deg,var(--lav) 0%,var(--lav-mid) 100%);color:#fff;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:600;letter-spacing:0.04em;padding:1.05rem 3rem;border-radius:100px;border:none;cursor:pointer;margin:0 auto;transition:all 0.2s;box-shadow:0 6px 24px rgba(139,111,181,.3);}
+    .don-btn:hover{opacity:0.9;transform:translateY(-2px);}
+    .don-note{margin-top:1.5rem;font-size:0.8rem;color:var(--text-m);line-height:1.7;}
+
+    /* CONTACT */
+    .ct-hero{background:var(--lav-ghost);padding:5rem 2rem 3.5rem;text-align:center;}
+    .ct-hero h1{font-size:clamp(2rem,4vw,3.2rem);color:var(--plum);margin-bottom:0.75rem;}
+    .ct-hero h1 em{font-style:italic;color:var(--lav);}
+    .ct-hero p{font-size:0.98rem;color:var(--text-s);}
+    .ct-body{padding:4.5rem 2rem 6rem;background:var(--whisper);}
+    .ct-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1.2fr;gap:4rem;}
+    .ct-info h2{font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--plum);margin-bottom:1.5rem;}
+    .ct-info h2 em{font-style:italic;color:var(--lav);}
+    .cti{margin-bottom:1.5rem;}
+    .ctl{font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;color:var(--honey-dk);margin-bottom:0.25rem;}
+    .ctv{font-size:0.92rem;color:var(--text);line-height:1.6;}
+    .ct-form h2{font-size:clamp(1.4rem,2.5vw,1.9rem);color:var(--plum);margin-bottom:1.5rem;}
+    .ct-form h2 em{font-style:italic;color:var(--lav);}
+    .ff{margin-bottom:1.1rem;}
+    .ff label{display:block;font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--lav-mid);margin-bottom:0.4rem;}
+    .ff input,.ff textarea,.ff select{width:100%;padding:0.8rem 1rem;background:#fff;border:1.5px solid var(--lilac);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:0.92rem;color:var(--text);outline:none;transition:border-color 0.2s;}
+    .ff input:focus,.ff textarea:focus,.ff select:focus{border-color:var(--lav);}
+    .ff textarea{resize:vertical;min-height:130px;}
+    .fsub{background:var(--lav);color:#fff;font-family:'DM Sans',sans-serif;font-size:0.88rem;font-weight:500;padding:0.85rem 2.5rem;border-radius:100px;border:none;cursor:pointer;transition:all 0.2s;}
+    .fsub:hover{background:var(--lav-mid);transform:translateY(-2px);}
+
+    /* TOAST */
+    .toast{background:var(--lav-pale);border:1px solid var(--lav-soft);color:var(--lav-deep);padding:0.9rem 1.5rem;border-radius:14px;font-size:0.88rem;display:none;margin-top:1.5rem;}
+    .toast.show{display:block;}
+
+    /* FOOTER */
+    footer{background:var(--plum-mid);padding:4rem 2rem 2rem;border-top:1px solid rgba(255,255,255,.06);}
+    .foot-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem;}
+    .foot-brand-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;margin-bottom:0.4rem;}
+    .foot-brand-name em{font-style:italic;color:var(--honey-lt);}
+    .foot-brand-tag{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--lav-soft);margin-bottom:1rem;}
+    .foot-brand p{font-size:0.85rem;color:rgba(255,255,255,.35);line-height:1.75;max-width:270px;}
+    .foot-col h4{font-family:'DM Sans',sans-serif;font-size:0.68rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--honey);margin-bottom:1.1rem;}
+    .foot-col a{display:block;font-size:0.85rem;color:rgba(255,255,255,.4);margin-bottom:0.65rem;cursor:pointer;transition:color 0.2s;}
+    .foot-col a:hover{color:rgba(255,255,255,.85);}
+    .foot-btm{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.05);font-size:0.73rem;color:rgba(255,255,255,.2);}
+    .foot-sp{color:var(--honey);opacity:0.55;}
+
+    /* PH COLORS */
+    .ph-lav{background:linear-gradient(135deg,var(--lav-pale),var(--lav-soft));}
+    .ph-honey{background:linear-gradient(135deg,#FAF0D0,#D4A843);}
+    .ph-plum{background:var(--plum-mid);}
+    .ph-lav2{background:linear-gradient(135deg,#EDE5F8,#B49DD0);}
+    .ph-sage{background:linear-gradient(135deg,#E8F5EE,#7DB89A);}
+    .ph-rose{background:linear-gradient(135deg,#FDE8EE,#C97B8A);}
+
+    /* RESPONSIVE */
+    @media(max-width:960px){
+      .hero{grid-template-columns:1fr;}
+      .hero-right{display:none;}
+      .hero-left{padding:4rem 1.5rem 3rem;}
+      .tgrid{grid-template-columns:repeat(2,1fr);}
+      .bgrid-home{grid-template-columns:1fr;}
+      .bcard-feat{grid-row:span 1;}
+      .as-inner{grid-template-columns:1fr;}
+      .aphoto{display:none;}
+      .ab-inner{grid-template-columns:1fr;}
+      .ab-photo{aspect-ratio:16/7;}
+      .ab-connect-inner{grid-template-columns:1fr;gap:2rem;}
+      .pgrid{grid-template-columns:1fr;}
+      .ct-inner{grid-template-columns:1fr;gap:2.5rem;}
+      .foot-inner{grid-template-columns:1fr 1fr;gap:2rem;}
+      .foot-btm{flex-direction:column;gap:0.5rem;text-align:center;}
+      .nav-links{display:none;}
+      .hamburger{display:block;}
+    }
+    @media(max-width:600px){
+      section{padding:3.5rem 1.25rem;}
+      .tgrid{grid-template-columns:1fr;}
+      .foot-inner{grid-template-columns:1fr;}
+      .nl-form{flex-direction:column;border-radius:16px;}
+      .nl-form input{border-radius:12px 12px 0 0;}
+      .nl-form button{border-radius:0 0 12px 12px;margin:0;}
+      .bp-grid{grid-template-columns:1fr;padding:2rem 1.25rem 4rem;}
+      .pgrid{grid-template-columns:1fr;}
+    }
+
+    @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+    .hero-tag{animation:fadeUp 0.5s ease 0.1s both;}
+    .hero h1{animation:fadeUp 0.5s ease 0.2s both;}
+    .hero-desc{animation:fadeUp 0.5s ease 0.3s both;}
+    .hero-qpill{animation:fadeUp 0.5s ease 0.4s both;}
+    .hero-btns{animation:fadeUp 0.5s ease 0.5s both;}
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('home')">
+    <div class="nav-logo-main">Fifty &amp; <em>Unfiltered</em></div>
+    <div class="nav-logo-sub">Your Truth &bull; Your Voice &bull; Your Space</div>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" id="nav-home">Home</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('blog')" id="nav-blog">Blog</a></li>
+    <li><a onclick="showPage('sponsor')" id="nav-sponsor">Our Sponsor</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+    <li><a onclick="showPage('donate')" class="nav-cta" id="nav-donate">Donate</a></li>
+  </ul>
+  <button class="hamburger" onclick="toggleMob()">&#9776;</button>
+</nav>
+<div class="mob-menu" id="mobMenu">
+  <a onclick="showPage('home');closeMob()">Home</a>
+  <a onclick="showPage('about');closeMob()">About</a>
+  <a onclick="showPage('blog');closeMob()">Blog</a>
+  <a onclick="showPage('sponsor');closeMob()">Our Sponsor</a>
+  <a onclick="showPage('contact');closeMob()">Contact</a>
+  <a onclick="showPage('donate');closeMob()" style="color:var(--lav);">Donate</a>
+</div>
+
+<!-- ==================== HOME ==================== -->
+<div id="page-home" class="page active">
+  <div class="page-wrap">
+    <div class="ribbon"><p>Proudly sponsored by <a onclick="showPage('sponsor')">Chat Chew and Do Empowerment Women Group (CCDEW)</a> &mdash; Empowering Women Through Community &amp; Action</p></div>
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-tag"><span class="tag-dot"></span>Real Talk for Black Women Over 50</div>
+        <h1>Your Next<br>Chapter Is<br><em>Your</em> <span class="hw">Best</span> One</h1>
+        <p class="hero-desc">No sugarcoating. No pretending. Just the honest conversations we should have been having all along. Welcome to the space that was built for you.</p>
+        <div class="hero-qpill"><span class="qmark">&ldquo;</span><div><p>Be unapologetically you. Your truth is your light.</p><cite>Mary Geter &mdash; Founder</cite></div></div>
+        <div class="hero-btns"><a class="btn-lav" onclick="showPage('blog')">Read the Blog</a><a class="btn-ghost" onclick="scrollNL()">Join the Community</a></div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-card">
+          <span class="hero-card-tag">Latest Post</span>
+          <div class="hero-card-title">Why Black Women Over 50 Are Finally Choosing Themselves First</div>
+          <p class="hero-card-body">We spent decades pouring into everyone else. Then one day we woke up and asked &mdash; when is it my turn?</p>
+          <div class="hca"><div class="hca-av">M</div><div><div class="hca-name">Mary Geter</div><div class="hca-role">Founder &bull; Fifty and Unfiltered</div></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPICS -->
+    <section class="topics-section"><div class="si">
+      <div class="eyebrow">The Real Conversations</div>
+      <h2 class="sh2">What We Talk About <em>Here</em></h2>
+      <p class="ssub">Life after 50 is not the beginning of the end. It is the beginning of everything you actually want. We cover every part of it.</p>
+      <div class="tgrid">
+        <div class="tcard"><span class="tcard-ico">&#10084;&#65039;</span><h3>Love &amp; Relationships</h3><p>Dating after divorce, navigating intimacy, setting boundaries, and what love really looks like with wisdom behind it.</p><span class="tpill">Relationships</span></div>
+        <div class="tcard"><span class="tcard-ico">&#129504;</span><h3>Mental &amp; Emotional Health</h3><p>Anxiety, depression, grief, therapy, and the emotional labor Black women carry that nobody talks about enough.</p><span class="tpill">Mental Health</span></div>
+        <div class="tcard"><span class="tcard-ico">&#127774;</span><h3>Health &amp; Body</h3><p>Menopause, hormones, chronic illness, and making peace with your body on your own terms.</p><span class="tpill">Health</span></div>
+        <div class="tcard"><span class="tcard-ico">&#128176;</span><h3>Money &amp; Independence</h3><p>Retirement, financial freedom, starting over, and building wealth when the world said it was too late.</p><span class="tpill">Money</span></div>
+        <div class="tcard"><span class="tcard-ico">&#128101;</span><h3>Family Dynamics</h3><p>Adult children, aging parents, divorce, and protecting your peace through every season of it.</p><span class="tpill">Family</span></div>
+        <div class="tcard"><span class="tcard-ico">&#10024;</span><h3>Identity &amp; Self-Worth</h3><p>Who are you when the roles fall away? Rediscovering yourself and your power at 50 and beyond.</p><span class="tpill">Identity</span></div>
+      </div>
+    </div></section>
+
+    <!-- BLOG PREVIEW -->
+    <section class="blog-section"><div class="si">
+      <div class="eyebrow">Fresh Off the Page</div>
+      <h2 class="sh2">Latest from the <em>Blog</em></h2>
+      <p class="ssub">Real stories, honest perspectives, and conversations that matter for women navigating life after 50.</p>
+      <div class="bgrid-home">
+        <div class="bcard bcard-feat" onclick="openPost(0)">
+          <div class="bcard-img"><img src="../Images for Blog AI/Firefly_Gemini Flash_A confident Black woman in her 40s smiling with her eyes closed, face lifted toward s 456752.png" alt="A confident Black woman smiling with her eyes closed, face lifted toward the sun"></div>
+          <div class="bcard-body"><span class="bcat">Featured &bull; Relationships</span><h3>Why Black Women Over 50 Are Finally Choosing Themselves First</h3><p>We spent decades pouring into everyone else. Then one day we woke up and asked &mdash; when is it my turn? Here is what that turning point really looks like.</p><div class="bmeta">March 2026 &bull; 8 min read</div><a class="bread">Read the full post &rarr;</a></div>
+        </div>
+        <div class="bcard" onclick="openPost(1)">
+          <div class="bcard-img"><img src="../Images for Blog AI/Firefly_Gemini Flash_A Black woman in her 40s sitting alone by a large window, holding a coffee cup with b 456752.png" alt="A Black woman sitting alone by a large window, holding a coffee cup"></div>
+          <div class="bcard-body"><span class="bcat">Mental Health</span><h3>The Loneliness Nobody Talks About After Divorce at 50</h3><p>It is not just about missing a person. It is about missing who you thought you would be.</p><div class="bmeta">March 2026 &bull; 6 min read</div><a class="bread">Read more &rarr;</a></div>
+        </div>
+        <div class="bcard" onclick="openPost(2)">
+          <div class="bcard-img"><img src="../Images for Blog AI/Doc looking crazy.jpg" alt="A doctor with a surprised expression"></div>
+          <div class="bcard-body"><span class="bcat">Health</span><h3>Menopause, Mood, and the Connection Nobody Warned Us About</h3><p>The mood swings, the anxiety, the brain fog. Here is the real conversation.</p><div class="bmeta">February 2026 &bull; 7 min read</div><a class="bread">Read more &rarr;</a></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:2.5rem;"><a class="btn-lav" onclick="showPage('blog')">See All Posts</a></div>
+    </div></section>
+
+    <!-- ABOUT STRIP -->
+    <section class="about-strip"><div class="si"><div class="as-inner">
+      <div class="aphoto"><div class="aphoto-ph">Add your photo here</div><div class="aphoto-label">Mary Geter &bull; Founder</div></div>
+      <div>
+        <div class="eyebrow">Meet Mary</div>
+        <h2 class="sh2">The Unapologetic Voice <em>Behind This Space</em></h2>
+        <p style="font-size:1rem;color:var(--text-s);line-height:1.8;margin-bottom:1rem;">As a proud African American woman, entrepreneur, and nonprofit founder, I have navigated spaces that were not built for women like us. Those experiences did not break me. They built this.</p>
+        <div class="pq"><p>"I created the space I needed and could not find. A place where brown-skinned women over 50 can be real, be seen, and be celebrated exactly as they are."</p></div>
+        <a class="btn-lav" onclick="showPage('about')" style="margin-top:1.5rem;">My Full Story &rarr;</a>
+      </div>
+    </div></div></section>
+
+    <!-- NEWSLETTER -->
+    <section class="nl-section" id="nl-section"><div class="nl-inner">
+      <div class="eyebrow">Join the Community</div>
+      <h2>Get the <em>Unfiltered</em> Truth Delivered</h2>
+      <p>Every month, real talk straight to your inbox. Topics chosen by you, written for women who have been through it and are still standing tall.</p>
+      <form class="nl-form" onsubmit="handleNL(event)">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+      <div id="nl-ok" class="nl-ok">You are in, sis. Welcome to the community. &#10024;</div>
+      <p class="nl-priv">No spam, ever. Unsubscribe anytime.</p>
+    </div></section>
+  </div>
+</div>
+
+<!-- ==================== BLOG PAGE ==================== -->
+<div id="page-blog" class="page">
+  <div class="page-wrap">
+    <div class="bp-hero">
+      <div class="eyebrow" style="justify-content:center;">Unfiltered Perspectives</div>
+      <h1>The <em>Blog</em></h1>
+      <p>Real conversations about the things that matter to women over 50. No fluff. No filler. Just the truth.</p>
+    </div>
+    <div class="bfilters">
+      <button class="fbtn active" onclick="filterB('all',this)">All Posts</button>
+      <button class="fbtn" onclick="filterB('relationships',this)">Relationships</button>
+      <button class="fbtn" onclick="filterB('mental-health',this)">Mental Health</button>
+      <button class="fbtn" onclick="filterB('health',this)">Health &amp; Body</button>
+      <button class="fbtn" onclick="filterB('money',this)">Money</button>
+      <button class="fbtn" onclick="filterB('identity',this)">Identity</button>
+      <button class="fbtn" onclick="filterB('family',this)">Family</button>
+    </div>
+    <div class="bp-grid" id="bp-grid">
+      <article class="bp-card" data-cat="relationships" onclick="openPost(0)"><div class="bp-card-img"><img src="../Images for Blog AI/Firefly_Gemini Flash_A confident Black woman in her 40s smiling with her eyes closed, face lifted toward s 456752.png" alt="A confident Black woman smiling with her eyes closed, face lifted toward the sun"></div><div class="bp-card-body"><span class="bcat">Relationships</span><h3>Why Black Women Over 50 Are Finally Choosing Themselves First</h3><p>We spent decades pouring into everyone else. Then one day we woke up and asked &mdash; when is it my turn?</p><div class="bmeta">March 2026 &bull; 8 min read</div><a class="bread">Read full post &rarr;</a></div></article>
+      <article class="bp-card" data-cat="mental-health" onclick="openPost(1)"><div class="bp-card-img"><img src="../Images for Blog AI/Firefly_Gemini Flash_A Black woman in her 40s sitting alone by a large window, holding a coffee cup with b 456752.png" alt="A Black woman sitting alone by a large window, holding a coffee cup"></div><div class="bp-card-body"><span class="bcat">Mental Health</span><h3>The Loneliness Nobody Talks About After Divorce at 50</h3><p>It is not just about missing a person. It is about missing who you thought you would be.</p><div class="bmeta">March 2026 &bull; 6 min read</div><a class="bread">Read full post &rarr;</a></div></article>
+      <article class="bp-card" data-cat="health" onclick="openPost(2)"><div class="bp-card-img"><img src="../Images for Blog AI/Doc looking crazy.jpg" alt="A doctor with a surprised expression"></div><div class="bp-card-body"><span class="bcat">Health &amp; Body</span><h3>Menopause, Mood, and the Mental Health Connection Nobody Warned Us About</h3><p>The mood swings, the anxiety, the brain fog. Here is what is really happening.</p><div class="bmeta">February 2026 &bull; 7 min read</div><a class="bread">Read full post &rarr;</a></div></article>
+      <article class="bp-card" data-cat="money" onclick="openPost(3)"><div class="bp-card-img"><img src="../Images for Blog AI/Bills.jpg" alt="Bills and financial documents on a table"></div><div class="bp-card-body"><span class="bcat">Money</span><h3>Starting Over Financially at 55: What Nobody Tells You</h3><p>Starting over is terrifying and possible at the same time. Here is what actually matters.</p><div class="bmeta">February 2026 &bull; 9 min read</div><a class="bread">Read full post &rarr;</a></div></article>
+      <article class="bp-card" data-cat="identity" onclick="openPost(4)"><div class="bp-card-img"><img src="../Images for Blog AI/Smile.png" alt="A Black woman smiling warmly"></div><div class="bp-card-body"><span class="bcat">Identity</span><h3>Who Are You When the Roles Fall Away?</h3><p>When the kids are grown, the marriage has changed, and the career has shifted — who are you now?</p><div class="bmeta">January 2026 &bull; 7 min read</div><a class="bread">Read full post &rarr;</a></div></article>
+      <article class="bp-card" data-cat="family" onclick="openPost(5)"><div class="bp-card-img"><img src="../Images for Blog AI/Elderly Woman.png" alt="An elderly woman in a thoughtful moment"></div><div class="bp-card-body"><span class="bcat">Family</span><h3>The Emotional Weight of Caring for Aging Parents</h3><p>We are the sandwich generation, and we are carrying it largely in silence.</p><div class="bmeta">January 2026 &bull; 8 min read</div><a class="bread">Read full post &rarr;</a></div></article>
+      <article class="bp-card" data-cat="relationships" onclick="openPost(6)"><div class="bp-card-img"><img src="../Images for Blog AI/Coffee Shop.png" alt="A woman sitting in a coffee shop"></div><div class="bp-card-body"><span class="bcat">Relationships</span><h3>Dating After 50: The Unwritten Rules Nobody Told Us</h3><p>The apps, the expectations, the baggage, and the beautiful possibility of love with more wisdom this time.</p><div class="bmeta">December 2025 &bull; 7 min read</div><a class="bread">Read full post &rarr;</a></div></article>
+      <article class="bp-card" data-cat="mental-health" onclick="openPost(7)"><div class="bp-card-img"><img src="../Images for Blog AI/Support.png" alt="A supportive moment between women"></div><div class="bp-card-body"><span class="bcat">Mental Health</span><h3>Why Black Women Struggle to Ask for Help &mdash; And Why That Has to Change</h3><p>The Strong Black Woman narrative is costing us our mental health. Here is the real conversation.</p><div class="bmeta">December 2025 &bull; 9 min read</div><a class="bread">Read full post &rarr;</a></div></article>
+      <article class="bp-card" data-cat="health" onclick="openPost(8)"><div class="bp-card-img"><img src="../Images for Blog AI/CCCA.jpg" alt="A Black woman dealing with hair loss"></div><div class="bp-card-body"><span class="bcat">Health &amp; Body</span><h3>Hair Loss After 50: What Black Women Need to Know</h3><p>Hair is not just hair for us. Here is the emotional, cultural, and medical reality, and what you can do about it.</p><div class="bmeta">November 2025 &bull; 8 min read</div><a class="bread">Read full post &rarr;</a></div></article>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== POST READER ==================== -->
+<div id="page-post" class="page">
+  <div class="page-wrap">
+    <div class="post-hero">
+      <div class="post-hero-inner">
+        <div class="post-cat-back">
+          <span id="post-cat-pill" class="bcat"></span>
+          <a class="back-btn" onclick="showPage('blog')">&#8592; Back to Blog</a>
+        </div>
+        <div id="post-hero-img" class="post-hero-img"></div>
+      </div>
+    </div>
+    <div class="post-body-wrap">
+      <div class="post-body-inner">
+        <h1 class="post-title" id="post-title"></h1>
+        <div class="post-byline">
+          <div class="post-av">M</div>
+          <div><div class="post-by-name">Mary Geter</div><div class="post-by-meta" id="post-meta"></div></div>
+        </div>
+        <div class="post-content" id="post-content"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== ABOUT ==================== -->
+<div id="page-about" class="page">
+  <div class="page-wrap">
+    <div class="ab-hero"><div class="ab-inner">
+      <div>
+        <div class="eyebrow">The Woman Behind the Work</div>
+        <h1>Hey There.<br>I'm <em>Mary.</em></h1>
+        <p>I am an African American entrepreneur, nonprofit founder, content creator, and the woman who got tired of having quiet conversations alone in her head and decided to say them out loud instead.</p>
+        <blockquote>"My journey through the isolating experience of being a single, brown-skinned woman navigating predominantly white spaces, while entering my 50s, inspired me to create Fifty and Unfiltered."</blockquote>
+        <p>With a background in civil rights compliance, contract compliance, and public administration spanning more than 18 years, I spent my career advocating for others. Now I am advocating for us.</p>
+      </div>
+      <div class="ab-photo"><div class="ab-photo-ph">Add your photo here<br>in the final setup</div><div class="ab-photo-label">Mary Geter &bull; Founder</div></div>
+    </div></div>
+    <div class="ab-mission"><div class="ab-mission-inner">
+      <div class="eyebrow" style="justify-content:center;">Our Purpose</div>
+      <h2>The Mission Behind <em>Fifty and Unfiltered</em></h2>
+      <p>Fifty and Unfiltered exists because Black women over 50 deserve a space that reflects our real lives. Not the sanitized version. The actual truth of what it means to navigate love, loss, health, money, and identity when the world expects us to be invisible.</p>
+      <p>Here, we are not invisible. We are the whole conversation. We hold each other up and refuse to let anyone rush us through this chapter.</p>
+      <div class="mqbox"><p>"Your story and your strength matter. And I want to hear it."</p><cite>Mary Geter</cite></div>
+    </div></div>
+    <div class="ab-connect"><div class="ab-connect-inner">
+      <div>
+        <div class="eyebrow">Background</div>
+        <h2>More Than <em>a Blog</em></h2>
+        <p>Mary holds a Master of Science in Counseling Education from Mississippi State University and a Bachelor of Science in Business Administration from Mississippi University for Women.</p>
+        <p>She spent more than 18 years with the Jackson Municipal Airport Authority in contract compliance, civil rights, and public administration. She is the founder of Chat Chew and Do Empowerment Women Group, a Mississippi-based nonprofit and the proud sponsor of Fifty and Unfiltered.</p>
+        <a class="btn-lav" onclick="showPage('sponsor')" style="margin-top:1.25rem;">Learn About Our Sponsor &rarr;</a>
+      </div>
+      <div class="ic">
+        <h2 style="font-size:1.3rem;margin-bottom:1.5rem;">Connect With <em>Mary</em></h2>
+        <div class="ir"><div class="il">Email</div><div class="iv">mgeter@601sistas.com</div></div>
+        <div class="ir"><div class="il">Phone</div><div class="iv">769.300.1156</div></div>
+        <div class="ir"><div class="il">Mailing Address</div><div class="iv">P.O. Box 13146, Jackson, MS 39236</div></div>
+        <div class="ir"><div class="il">Based In</div><div class="iv">Mississippi, United States</div></div>
+        <div class="schips">
+          <a class="schip" href="https://www.instagram.com/keepupwithmg" target="_blank">&#128247; @keepupwithmg</a>
+          <a class="schip" href="https://www.facebook.com" target="_blank">Facebook</a>
+          <a class="schip" href="https://www.pinterest.com" target="_blank">Pinterest</a>
+        </div>
+        <a class="btn-ghost" onclick="showPage('contact')" style="margin-top:1.5rem;display:inline-block;">Send a Message</a>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ==================== SPONSOR ==================== -->
+<div id="page-sponsor" class="page">
+  <div class="page-wrap">
+    <div class="sp-hero"><div class="sp-inner">
+      <div class="eyebrow" style="justify-content:center;color:var(--honey-lt);">Proudly Presented By</div>
+      <h1>Our <em>Sponsor</em></h1>
+      <p>Fifty and Unfiltered is made possible through the support of a nonprofit that has been empowering women through community, conversation, and action.</p>
+    </div></div>
+    <div class="sp-body"><div class="sp-body-inner">
+      <div class="orgbox"><div class="orgbox-inner"><div class="orgname">Chat Chew and Do<br>Empowerment Women Group</div><div class="orgacro">CCDEW &bull; A Mississippi Nonprofit Organization</div></div></div>
+      <h2>Who <em>We Are</em></h2>
+      <p>Chat Chew and Do Empowerment Women Group, known as CCDEW, is a Mississippi-based nonprofit organization founded to empower women through community building, honest conversation, and collective action. We believe that when women come together, share their truths, and support one another, they change not just their own lives but the world around them.</p>
+      <p>CCDEW is the heart behind Fifty and Unfiltered. The same values that drive our community work are the foundation this platform is built on.</p>
+      <div class="pgrid">
+        <div class="pcrd"><span class="pcrd-ico">&#128172;</span><h3>Chat</h3><p>We create safe spaces for honest, unfiltered conversation about the issues affecting women's lives today.</p></div>
+        <div class="pcrd"><span class="pcrd-ico">&#127860;</span><h3>Chew</h3><p>We dig into the real issues with depth and substance. Health, relationships, finances, identity.</p></div>
+        <div class="pcrd"><span class="pcrd-ico">&#9996;&#65039;</span><h3>Do</h3><p>We move from conversation to action, building programs and resources that create real change for women.</p></div>
+      </div>
+      <h2>Why We Support <em>Fifty and Unfiltered</em></h2>
+      <p>Fifty and Unfiltered represents everything CCDEW stands for. It centers Black women. It refuses to minimize their experiences. It tells the truth about what life after 50 actually looks like, and it builds community around that truth. CCDEW is proud to stand behind every word of it.</p>
+      <div class="cbox">
+        <div class="eyebrow">Get Involved</div>
+        <h2>Connect With <em>CCDEW</em></h2>
+        <p>CCDEW hosts events, workshops, and community gatherings for women in Mississippi and beyond.</p>
+        <p><strong>Email:</strong> mgeter@601sistas.com &bull; <strong>Phone:</strong> 769.300.1156</p>
+        <p><strong>Mail:</strong> P.O. Box 13146, Jackson, MS 39236</p>
+        <div class="cbox-btns"><a class="btn-lav" onclick="showPage('donate')">Support Our Work</a><a class="btn-ghost" onclick="showPage('contact')">Get in Touch</a></div>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- ==================== DONATE ==================== -->
+<div id="page-donate" class="page">
+  <div class="page-wrap">
+    <div class="don-hero"><div class="don-inner">
+      <div class="eyebrow" style="justify-content:center;color:rgba(255,255,255,.7);">Keep This Community Going</div>
+      <h1>Support Fifty and Unfiltered</h1>
+      <p>Your support keeps the content free, the community open, and the real talk coming.</p>
+    </div></div>
+    <div class="don-body"><div class="don-body-inner">
+      <div class="eyebrow" style="justify-content:center;">Your Gift Matters</div>
+      <h2>Choose Your <em>Support Level</em></h2>
+      <p>Every dollar goes directly to keeping Fifty and Unfiltered running and supporting the mission of CCDEW.</p>
+      <div class="amtgrid">
+        <button class="amtbtn" onclick="selAmt(this)">$10</button>
+        <button class="amtbtn" onclick="selAmt(this)">$25</button>
+        <button class="amtbtn sel" onclick="selAmt(this)">$50</button>
+        <button class="amtbtn" onclick="selAmt(this)">$100</button>
+      </div>
+      <p style="font-size:0.78rem;color:var(--text-m);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:0.85rem;">Or enter your own amount</p>
+      <div class="cstrow"><span class="cstpfx">$</span><input type="number" id="camt" placeholder="Your amount" min="1" /></div>
+      <button class="don-btn" onclick="handleDon()">Donate Now &mdash; Thank You, Sis &#10024;</button>
+      <div id="don-ok" class="toast" style="text-align:center;">Thank you so much. Your support means everything. &#129293;</div>
+      <p class="don-note">Sponsored by Chat Chew and Do Empowerment Women Group (CCDEW), a Mississippi-based nonprofit.<br>Questions? Email mgeter@601sistas.com</p>
+    </div></div>
+  </div>
+</div>
+
+<!-- ==================== CONTACT ==================== -->
+<div id="page-contact" class="page">
+  <div class="page-wrap">
+    <div class="ct-hero">
+      <div class="eyebrow" style="justify-content:center;">Say Hello</div>
+      <h1>Get in <em>Touch</em></h1>
+      <p>A real woman reads every message. Please do not hesitate to reach out.</p>
+    </div>
+    <div class="ct-body"><div class="ct-inner">
+      <div class="ct-info">
+        <h2>Connect With <em>Mary</em></h2>
+        <div class="cti"><div class="ctl">Email</div><div class="ctv">mgeter@601sistas.com</div></div>
+        <div class="cti"><div class="ctl">Phone</div><div class="ctv">769.300.1156</div></div>
+        <div class="cti"><div class="ctl">Mailing Address</div><div class="ctv">P.O. Box 13146<br>Jackson, MS 39236</div></div>
+        <div class="cti"><div class="ctl">Sponsor</div><div class="ctv">Chat Chew and Do Empowerment Women Group (CCDEW)</div></div>
+        <div class="cti"><div class="ctl">Follow Mary</div>
+          <div class="schips" style="margin-top:0.5rem;">
+            <a class="schip" href="https://www.instagram.com/keepupwithmg" target="_blank">Instagram</a>
+            <a class="schip" href="https://www.facebook.com" target="_blank">Facebook</a>
+            <a class="schip" href="https://www.pinterest.com" target="_blank">Pinterest</a>
+          </div>
+        </div>
+      </div>
+      <div class="ct-form">
+        <h2>Send a <em>Message</em></h2>
+        <form onsubmit="handleCt(event)">
+          <div class="ff"><label>Your Name</label><input type="text" placeholder="First and last name" required /></div>
+          <div class="ff"><label>Email Address</label><input type="email" placeholder="your@email.com" required /></div>
+          <div class="ff"><label>What is this about?</label><select><option>General Message</option><option>Blog Topic Suggestion</option><option>Community &amp; Events</option><option>Partnership Inquiry</option><option>CCDEW Nonprofit</option><option>Media &amp; Press</option></select></div>
+          <div class="ff"><label>Your Message</label><textarea placeholder="Say what is on your mind..." required></textarea></div>
+          <button type="submit" class="fsub">Send Message</button>
+          <div id="ct-ok" class="toast">Your message has been sent. Mary will be in touch soon. &#128149;</div>
+        </form>
+      </div>
+    </div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="foot-brand-name">Fifty &amp; <em>Unfiltered</em></div>
+      <div class="foot-brand-tag">Your Truth &bull; Your Voice &bull; Your Space</div>
+      <p>A warm, honest space for Black women over 50 navigating love, health, money, identity, and everything in between. No sugarcoating. Just real talk.</p>
+    </div>
+    <div class="foot-col"><h4>Navigate</h4><a onclick="showPage('home')">Home</a><a onclick="showPage('about')">About Mary</a><a onclick="showPage('blog')">Blog</a><a onclick="showPage('sponsor')">Our Sponsor</a><a onclick="showPage('contact')">Contact</a></div>
+    <div class="foot-col"><h4>Topics</h4><a onclick="showPage('blog');filterB('relationships',null)">Relationships</a><a onclick="showPage('blog');filterB('mental-health',null)">Mental Health</a><a onclick="showPage('blog');filterB('health',null)">Health &amp; Body</a><a onclick="showPage('blog');filterB('money',null)">Money</a><a onclick="showPage('blog');filterB('identity',null)">Identity</a></div>
+    <div class="foot-col"><h4>Connect</h4><a href="https://www.instagram.com/keepupwithmg" target="_blank">Instagram</a><a href="https://www.facebook.com" target="_blank">Facebook</a><a href="https://www.pinterest.com" target="_blank">Pinterest</a><a onclick="showPage('donate')">Donate</a></div>
+  </div>
+  <div class="foot-btm">
+    <span>&copy; 2026 Fifty and Unfiltered &mdash; Mary Geter's Creative Space. All content the heart and soul of Mary Geter.</span>
+    <span class="foot-sp">Sponsored by CCDEW &mdash; Chat Chew and Do Empowerment Women Group</span>
+  </div>
+</footer>
+
+<script>
+const POSTS = [
+  {cat:"Relationships",date:"March 2026",read:"8 min read",ph:"ph-plum",phLight:false,
+   img:"../Images for Blog AI/Firefly_Gemini Flash_A confident Black woman in her 40s smiling with her eyes closed, face lifted toward s 456752.png",
+   alt:"A confident Black woman in her 40s smiling with her eyes closed, face lifted toward the sun",
+   title:"Why Black Women Over 50 Are Finally Choosing Themselves First",
+   content:`<p>Let me tell you something I wish somebody had told me twenty years ago.</p><p>You cannot pour from an empty cup. I know you have heard that before. But here is the part nobody finishes the sentence with: if you spend your whole life filling everybody else's cup, one day you will reach for yours and find out it has been bone dry for so long that you forgot it was even yours to fill.</p><p>I see it in women every single day. We hit fifty and we look up from everything we have been doing — raising children, holding marriages together, building careers, taking care of aging parents, being the strong one in every room — and we realize we have been so busy showing up for everyone else that we never learned how to show up for ourselves.</p><p>According to a 2023 study published in the journal Women's Health, Black women are significantly more likely than other groups to report feeling emotionally depleted and undervalued in their personal relationships. Sixty-two percent of Black women surveyed said they consistently prioritize the needs of others over their own. Sixty-two percent, sis. That is not a personality trait. That is a pattern. And patterns can be broken.</p><h2>The moment everything shifted for <em>me</em></h2><p>I remember sitting in my car in a parking lot after a particularly exhausting family gathering. I had cooked, cleaned, mediated a disagreement between two relatives who were not even speaking to each other, consoled someone going through a breakup, and listened to everyone's problems for six hours straight. And when it was over, when everyone went home satisfied and full, I sat in that car and I cried. Not because I was sad. Because I realized I had not eaten a single plate of the food I spent four hours preparing. I had not sat down once. Nobody had asked me how I was doing. Not once.</p><p>That was the moment I understood. I had become so good at being everything for everyone that I had made myself invisible. And the worst part? I had helped them do it.</p><h2>Why we do <em>this</em></h2><p>This is not about blame. Understanding why we do something is not the same as excusing it. But we need to be honest about where this pattern comes from.</p><p>Black women have been socialized for generations to be the backbone of everything and everyone around them. We learned early that being strong was survival. We learned that our needs were secondary. We internalized messages — from our families, from society, from every space we walked into — that our value was tied to what we could produce for others. How much we could endure. How little we needed.</p><p>Dr. Cheryl Woods-Giscombé, a researcher at the University of North Carolina, developed the concept she calls the Strong Black Woman schema — the idea that Black women feel culturally pressured to be self-reliant, emotionally suppressed, and always there for everyone else. Her research found that this pattern directly contributes to higher rates of stress, anxiety, and physical health problems in Black women. We are literally making ourselves sick trying to be strong for everybody else.</p><p>Fifty is the place where a lot of us finally get tired enough to stop.</p><h2>What choosing yourself actually <em>looks like</em></h2><p>I want to be clear about something. Choosing yourself is not selfish. It is not abandoning the people you love. It is not becoming someone cold or closed off. It is learning that you are also one of the people you are responsible for loving well.</p><p>It looks like saying no without a three-paragraph explanation.</p><p>It looks like making the appointment you have been putting off for yourself, before you make everyone else's.</p><p>It looks like not answering the phone at eleven o'clock at night when you know the call is going to drain you for two days.</p><p>It looks like having the conversation you have been avoiding because you were more worried about the other person's comfort than your own truth.</p><p>It looks like buying yourself the thing. Taking the trip. Enrolling in the class. Starting the thing you said you would do when you had more time, and understanding that the time is now because now is all any of us actually have.</p><h2>The relationships that survive this <em>shift</em></h2><p>Here is what I have noticed. When you start choosing yourself, one of two things happens with the people around you. Either they adjust and the relationship gets better, more honest, more mutual. Or they resist, because they were benefiting from a version of you that was giving everything and asking for nothing.</p><p>Both outcomes are information.</p><p>The relationships worth keeping are the ones that can handle the real you. The one with needs. The one with limits. The one who sometimes says I cannot right now. Those relationships, the ones that survive your becoming, are the ones that were real all along.</p><blockquote>At fifty and beyond, we do not have time for relationships that only work when we are running on empty.</blockquote><p>You have spent enough years being everyone's everything. You are allowed to be your own something. You are allowed to take up space, to have desires, to protect your energy, to rest without guilt, to want more for yourself than you have settled for.</p><p>Fifty is not the beginning of the end. For a lot of us, it is the beginning of the first chapter we ever wrote for ourselves.</p><p>Pick up the pen, sis. It is your story now.</p>`},
+
+  {cat:"Mental Health",date:"March 2026",read:"6 min read",ph:"ph-lav",phLight:true,
+   img:"../Images for Blog AI/Firefly_Gemini Flash_A Black woman in her 40s sitting alone by a large window, holding a coffee cup with b 456752.png",
+   alt:"A Black woman in her 40s sitting alone by a large window, holding a coffee cup",
+   title:"The Loneliness Nobody Talks About After Divorce at 50",
+   content:`<p>Nobody tells you about the quiet.</p><p>After the papers are signed, after the moving trucks come and go, after everyone has checked in and said their piece and gone back to their own lives — there is this silence that settles in. And it is not peaceful. It is the loudest thing you have ever heard.</p><p>I have talked to so many women who have been through divorce after fifty, and almost every one of them says some version of the same thing. I thought I would feel relieved. Or sad. Or angry. I was not prepared for how alone I would feel.</p><p>This kind of loneliness is different from the ordinary kind. It is not just about missing a person. It is about missing a whole version of yourself. The one who knew exactly who she was because she was someone's wife. The one who had a role, a routine, a place in a structure that made sense. When that structure comes down, you do not just lose a relationship. You lose the identity you built around it.</p><h2>The statistics are <em>sobering</em></h2><p>The rate of divorce among adults over 50 has doubled since the 1990s. Researchers call it gray divorce, and it is one of the most significant social trends of our time. Among Black women specifically, the emotional and financial aftermath of gray divorce tends to be more severe, largely because we are less likely to seek professional mental health support and more likely to try to process everything alone.</p><p>A study from Bowling Green State University found that adults who divorce after fifty experience significantly higher rates of depression and social isolation than younger divorcees. The social networks that couples build together — the couple friends, the family gatherings, the social identity — largely dissolve when the marriage does. And suddenly you are starting over socially at an age when most people assume you have everything figured out.</p><h2>It is also <em>grief</em></h2><p>What I want you to understand is that what you are feeling after a divorce at fifty is grief. Real, legitimate, complicated grief. And grief does not follow a schedule or a checklist.</p><p>You are grieving the relationship, yes. But you are also grieving the future you planned. The retirement you imagined. The grandchildren conversations you thought you would have together. The person you were inside that marriage, even if that person was sometimes exhausted and overlooked. Grief is not rational. You can be relieved a marriage is over and still grieve it deeply at the same time. Both things are true.</p><blockquote>We are expected to bounce back. To move on. To be strong. And so we push the grief down, and it comes out sideways.</blockquote><h2>What actually <em>helps</em></h2><p>Therapy is not weakness. Talking to a professional who can help you process this grief and start to rebuild your sense of self is one of the most practical things you can do. If cost is a barrier, Psychology Today has a searchable database of therapists who offer sliding scale fees.</p><p>Community matters more than you think. Not performing wellness for people. Actual community. Women who can sit with you in the hard part.</p><p>Give yourself a full year before you make major decisions. Financial, romantic, geographic. Grief clouds judgment. Give yourself time to get still before you make the next big move.</p><p>And please, eat the food. Take the walk. Sleep when your body says sleep. The basics matter more than you think when everything else feels like it is falling apart.</p><h2>Who you are on the <em>other side</em></h2><p>Here is what I want you to hold onto when the quiet gets too loud. On the other side of this grief is a woman you have not met yet. A woman who knows herself in a way she could not when she was busy being someone else's partner. A woman who makes her own decisions. Who builds her own mornings. Who figures out, sometimes for the very first time, what she actually likes, what she actually wants, what she actually needs.</p><p>That woman is worth the grief it takes to get to her.</p><p>You are not starting over. You are starting with everything you know now. There is a difference.</p>`},
+
+  {cat:"Health & Body",date:"February 2026",read:"7 min read",ph:"ph-honey",phLight:true,
+   img:"../Images for Blog AI/Doc looking crazy.jpg",
+   alt:"A doctor with a surprised expression",
+   title:"Menopause, Mood, and the Mental Health Connection Nobody Warned Us About",
+   content:`<p>Let me ask you something. In the last two years, have you felt more anxious than usual? Had moments of deep sadness that seemed to come out of nowhere? Found yourself snapping at people you love over small things and then wondering who that woman was? Lying awake at three in the morning with your mind racing even though your body was exhausted?</p><p>If you said yes to any of those, your doctor may have tested your thyroid. Checked your vitamin D. Suggested you try to stress less. But here is what they may not have connected it to: menopause.</p><p>The mental health symptoms of menopause are some of the most underdiagnosed and undertreated experiences in women's medicine, particularly for Black women. And the consequences of that gap are real.</p><h2>What is actually happening in <em>your body</em></h2><p>Estrogen does not just regulate your menstrual cycle. It plays a significant role in the regulation of serotonin, dopamine, and norepinephrine — the neurotransmitters most closely linked to mood, motivation, and emotional stability. When estrogen levels decline during perimenopause and menopause, those neurotransmitter systems are directly affected.</p><p>This is why the mood changes of menopause are not "just in your head" in the dismissive sense of that phrase. They are literally in your brain chemistry. Your brain is responding to a dramatic hormonal shift, and for some women, that shift is destabilizing in ways that look exactly like clinical depression or an anxiety disorder.</p><blockquote>According to the North American Menopause Society, women are two to four times more likely to experience a major depressive episode during the menopause transition than at any other time in their adult lives.</blockquote><p>Two to four times. And yet most of us were never told this was coming.</p><h2>Why Black women are hit harder and <em>helped less</em></h2><p>Research consistently shows that Black women report more severe menopausal symptoms than white women, including more intense mood symptoms and hot flashes that disrupt sleep more significantly. Chronic sleep disruption alone is a major driver of mood disorders.</p><p>At the same time, Black women are less likely to receive hormone therapy or mental health treatment for menopausal symptoms. We are less likely to be believed when we describe our symptoms. The combination of more severe symptoms and less treatment is a gap that has real consequences for our quality of life.</p><h2>The symptoms worth paying <em>attention to</em></h2><p>Beyond the hot flashes and irregular periods, here is what menopause can actually look like from a mental and emotional standpoint: anxiety that feels new or worse than before, irritability that seems out of proportion to what triggered it, sadness or a flatness that is hard to explain, difficulty concentrating or remembering things, a loss of motivation or pleasure in things you used to enjoy, sleep disruption that compounds every other symptom, and feeling unlike yourself in a way that is hard to articulate.</p><h2>What you can <em>do</em></h2><p>Talk to your doctor and be specific. Do not just say you have been feeling off. Say: I am experiencing mood changes, anxiety, and sleep disruption, and I want to discuss whether this could be related to perimenopause or menopause. Bring a list of symptoms.</p><p>Hormone therapy is not right for everyone, but it is more nuanced than the fears that circulated in the early 2000s suggested. Have a real conversation with your provider about the risks and benefits for your specific situation.</p><p>Lifestyle changes matter. Exercise, particularly strength training and cardio, has been shown to significantly reduce menopausal mood symptoms. Sleep hygiene matters enormously.</p><p>And please, find a doctor who takes you seriously. You deserve a provider who listens to the full picture of what you are experiencing.</p><p>Menopause is a transition, not a permanent state. You deserve to understand what is happening to you, and you deserve care that reflects that.</p>`},
+
+  {cat:"Money",date:"February 2026",read:"9 min read",ph:"ph-lav2",phLight:true,
+   img:"../Images for Blog AI/Bills.jpg",
+   alt:"Bills and financial documents on a table",
+   title:"Starting Over Financially at 55: What Nobody Tells You",
+   content:`<p>I want to start with something nobody says in these articles about women and money: it is okay that you are here.</p><p>Not the desperate, consolation-prize kind of okay. The real kind. The kind that acknowledges that life does not go according to plan, that financial setbacks happen to intelligent, hardworking, capable women, and that being at a place of needing to start over at 55 does not mean you have failed. It means you are still here, still standing, and still in the game.</p><h2>Get brutally honest about where <em>you are</em></h2><p>The first step is the one most people avoid because it is uncomfortable. You need to know the real number. Not the number you think it is, not the number you hope it is — the actual, current state of your finances.</p><p>That means pulling every account statement. Every debt balance. Every monthly expense. Your credit score. Your retirement account balance if you have one. Social Security projections, which you can get free at ssa.gov. The real picture, all of it, laid out in front of you.</p><p>This exercise is not to make you feel bad. It is to give you solid ground to stand on. You cannot build a plan from a guess. You can only build it from facts.</p><h2>Stop comparing your timeline to <em>someone else's</em></h2><p>There is an enormous amount of shame wrapped up in financial starting over, especially when you look around and see peers who seem to have it together. What you do not see is their debt, their fear, their private financial stress.</p><blockquote>According to a 2024 report from the National Institute on Retirement Security, 40 percent of Black women have no retirement savings at all.</blockquote><p>That number is not a reflection of irresponsibility. It reflects wage gaps, caregiving responsibilities, health crises, divorce, and economic systems that were not built with Black women in mind. You are not an outlier. You are in a very large group of women who are figuring this out later than they planned, and there is a path forward.</p><h2>The practical moves that actually <em>matter at 55</em></h2><p>If you are working and have access to a 401k or 403b with an employer match, contribute at least enough to get the full match immediately. That is free money and there is no reason to leave it on the table.</p><p>After 50, the IRS allows catch-up contributions to retirement accounts. In 2026 you can contribute up to $30,500 to a 401k and $8,000 to an IRA if you are over 50. These higher limits exist specifically because the government knows people start late.</p><p>Eliminate high-interest debt before you save aggressively. If your credit card charges 22 percent interest and your savings account earns 4 percent, paying off the card is a better return than saving.</p><p>Social Security benefits increase significantly the longer you delay claiming them, up to age 70. If you can work until then, even part time, the monthly benefit increase is substantial and affects you for the rest of your life.</p><h2>What you are building <em>toward</em></h2><p>Starting over at 55 is not the tragedy it has been presented as. It is a second chance to build something that is actually yours. Not the financial life you built around someone else or inside a structure that has since changed. Yours. Based on your values, your priorities, your vision of what security and freedom look like for you specifically.</p><p>Women who start over financially after 50 and do it intentionally, with good information and a realistic plan, often end up in a more solid position than women who coasted along in a status quo that was not really working.</p><p>The key word is intentionally. You are reading this article, which means you are already doing that.</p>`},
+
+  {cat:"Identity",date:"January 2026",read:"7 min read",ph:"ph-sage",phLight:true,
+   img:"../Images for Blog AI/Smile.png",
+   alt:"A Black woman smiling warmly",
+   title:"Who Are You When the Roles Fall Away?",
+   content:`<p>There is a question that starts whispering sometime around your early fifties, and if you are not ready for it, it can feel like the floor is dropping out from under you.</p><p>Who are you when nobody needs you anymore?</p><p>Or maybe the question comes differently for you. Who are you now that the marriage is not what it was? Who are you outside of the job title you have held for twenty years? Who are you now that the children are grown and your whole identity as a mother has shifted into something quieter, less urgent, less constant?</p><p>This question — who am I, really, when I strip away all the roles — is the most important question you will grapple with in this chapter of your life. And it deserves more than a quick answer.</p><h2>The identity we build around <em>roles</em></h2><p>Psychologists have a concept called role identity theory, which says that much of how we understand ourselves is tied to the social roles we occupy. Mother. Wife. Manager. Caregiver. Daughter. When those roles change or end, the self-concept built around them can feel destabilized.</p><p>For Black women, this is complicated by additional layers. Many of us never had a strong cultural permission slip to build an identity outside of what we do for others. Our worth was tied to our productivity, our availability, our strength. The idea of sitting with the question of who we are for ourselves, separate from all of it, can feel indulgent.</p><p>It is not. It is essential.</p><h2>Starting to find <em>out</em></h2><p>What did you love before you became responsible for everyone else? Not what you are good at. Not what makes you useful. What did you genuinely love? Music, reading, drawing, dancing, cooking for the pleasure of it rather than the necessity? Whatever it was, it is still in you.</p><p>What have you always been curious about but never had time for? The thing you say someday about. That someday is now more available to you than it has ever been.</p><p>What makes you lose track of time? When are you so absorbed in something that you look up and an hour has passed without you noticing? That absorption is a clue.</p><blockquote>What would you do if nobody was watching and nobody was judging? That answer tells you something real about who you are underneath the performance.</blockquote><h2>The identity that <em>emerges</em></h2><p>What I have watched happen in women who take this question seriously is remarkable. A woman who spent thirty years as a corporate administrator who discovers she is an artist. A woman who raised four children who finds out she is a community organizer. A woman who was defined entirely by her marriage who discovers she is a traveler, an adventurer, someone who wants to see the world and is perfectly capable of seeing it on her own terms.</p><p>These discoveries do not erase the previous chapters. They add to them. You are not becoming someone new. You are becoming more fully who you always were under the surface.</p><p>Fifty is not the age where your story ends. It is the age where you finally have the authority to write the next chapter yourself. You have the wisdom now that you did not have at thirty. You have fewer people to answer to.</p><p>Who are you? You are still finding out. And that is the most alive you can possibly be.</p>`},
+
+  {cat:"Family",date:"January 2026",read:"8 min read",ph:"ph-honey",phLight:true,
+   img:"../Images for Blog AI/Elderly Woman.png",
+   alt:"An elderly woman in a thoughtful moment",
+   title:"The Emotional Weight of Caring for Aging Parents",
+   content:`<p>We are the sandwich generation. You have probably heard that term. Caught between caring for aging parents and still being needed by children who may or may not be fully launched. But here is the part the term does not capture: for Black women, the sandwich is not just generational. It is cultural, financial, emotional, and physical all at once. And we are carrying it largely alone and mostly in silence.</p><h2>The numbers tell the <em>story</em></h2><p>Black Americans are significantly more likely than white Americans to provide unpaid care for an aging family member. Black women in particular are disproportionately represented among family caregivers — often stepping in because professional care is too expensive, because no one else will, or because our culture has taught us that this is simply what you do.</p><p>According to AARP, family caregivers spend an average of 24 hours per week providing care. For those in intensive caregiving situations, that number climbs above 40 hours — a second full-time job, unpaid and largely invisible. The financial impact is staggering. Women who take on caregiving roles lose an average of $324,000 in wages, Social Security benefits, and retirement savings over their lifetimes.</p><h2>The grief nobody <em>names</em></h2><p>Caring for an aging parent is a particular kind of grief called anticipatory grief. You are grieving the parent they used to be while they are still here. You are watching someone who was once your protector, your authority, your safe place — become someone who needs you to protect them. The role reversal is disorienting in a way that is genuinely difficult to prepare for.</p><blockquote>That resentment that sometimes flickers up — the one you immediately feel guilty about — is not a character flaw. It is a signal. It is your nervous system telling you that you are running beyond capacity.</blockquote><h2>What sustainable caregiving actually <em>looks like</em></h2><p>The airplane oxygen mask principle applies here. You cannot sustain this if you have nothing left. Taking care of yourself is not selfish caregiving. It is the only kind that lasts.</p><p>That means accepting help. Even when it is imperfect. Even when the other person does not do it exactly the way you would. Imperfect help extended is more valuable than perfect help withheld.</p><p>It means using the resources that exist. Medicaid covers a significant range of in-home care services for those who qualify. Many communities have Area Agencies on Aging that provide free or reduced cost services. The ARCH National Respite Network can help you find respite care in your area.</p><p>And it means getting your own support. Caregiver support groups exist specifically for this — spaces where you can say what you cannot say anywhere else.</p><h2>The love underneath the <em>exhaustion</em></h2><p>I do not want this post to lose sight of what is real here. Underneath the exhaustion, underneath the grief that is hard to name, there is love. Profound, complicated, deep love for the people who raised you.</p><p>That love is why you are doing this. And that love is worth protecting, which is exactly why you cannot let it burn you down to nothing.</p><p>Taking care of yourself inside this caregiving season is an act of love — for your parent, for your family, and for the woman you still need to be when this chapter is over.</p>`},
+
+  {cat:"Relationships",date:"December 2025",read:"7 min read",ph:"ph-rose",phLight:true,
+   img:"../Images for Blog AI/Coffee Shop.png",
+   alt:"A woman sitting in a coffee shop",
+   title:"Dating After 50: The Unwritten Rules Nobody Told Us",
+   content:`<p>Let me just say it: dating after fifty is a different animal. And nobody adequately prepares you for it.</p><p>When I was in my twenties, dating was confusing but at least it came with a shared rulebook. You dated, you called it something, you maybe got serious, you figured it out. Dating at fifty has no rulebook. Or rather, it has several competing rulebooks, none of which quite fit.</p><h2>The apps are a tool, not a <em>solution</em></h2><p>Online dating apps are where most people over fifty meet potential partners now, and I am not going to pretend otherwise. But the apps are a tool, and like any tool, they work better when you understand what they are for and what they are not.</p><p>They are for initial access to people you would not otherwise meet. They are not for building connection — that still happens the old-fashioned way, through conversation, through time, through showing up.</p><p>Be specific in your profile about who you are and what you are looking for. Vague profiles attract vague people. Intentional profiles attract intentional people. And at fifty, you have neither the energy nor the interest for vague.</p><h2>The baggage <em>conversation</em></h2><p>Everybody at fifty has a history. You have one. Any person worth dating has one. The question is not whether baggage exists — it is whether it is packed or whether it is still sitting open on the floor.</p><blockquote>What to look for: someone who can talk about their past relationships with honesty and some degree of peace. Not someone who has no feelings about the past, but someone who has processed enough to not be governed by it.</blockquote><h2>What is actually different <em>this time</em></h2><p>Here is the good news about dating at fifty that does not get said enough: you know yourself better than you ever have. You know what you like. You know what you will not tolerate. You know what loneliness actually feels like and you know that being alone is not the worst possible outcome — being in the wrong relationship is.</p><p>That knowledge is power. It is the thing twenty-five-year-old you did not have. You no longer need to contort yourself into what someone else wants. You no longer have to pretend you are fine with things that are not fine. You can ask for what you want and walk away from what does not match it.</p><p>That is not baggage. That is clarity. And clarity is attractive.</p><h2>The standards <em>conversation</em></h2><p>I want to address something that comes up constantly when women over fifty talk about dating. The pressure to lower our standards because we are older.</p><p>No.</p><p>Your standards are not the problem. Your standards at fifty should be higher than they were at thirty, because you know more now. What you may need to adjust is not your standards but your expectations of the timeline. Good relationships at this stage of life take time to build. They tend to move more intentionally. That is not a problem. That is healthy.</p><p>You deserve someone who sees you. Who is interested in your mind and your life and your history. Who treats your time as valuable. Who shows up consistently, not just when it is convenient.</p><p>Give dating at fifty the chance it deserves. Give yourself that chance.</p>`},
+
+  {cat:"Mental Health",date:"December 2025",read:"9 min read",ph:"ph-lav",phLight:true,
+   img:"../Images for Blog AI/Support.png",
+   alt:"A supportive moment between women",
+   title:"Why Black Women Struggle to Ask for Help — And Why That Has to Change",
+   content:`<p>I want to start with a statistic that stopped me cold when I first read it.</p><p>Only one in three Black Americans who need mental health care actually receive it. For Black women specifically, the barriers are even higher — cultural stigma, cost, a shortage of culturally competent providers, and a deeply ingrained belief that asking for help is a form of weakness.</p><p>One in three. That means two out of every three of us who need support are going without it. And we are going without it not because it does not exist, but because we have been taught — explicitly and implicitly, for generations — that we are supposed to be strong enough not to need it.</p><h2>Where the Strong Black Woman <em>comes from</em></h2><p>The Strong Black Woman is not a myth in the sense that Black women are not strong. We are. Profoundly. But strength became weaponized somewhere along the way. It became the expectation that we could and should handle everything without breaking, without asking, without needing.</p><p>Historians and psychologists point to the roots of this in the dehumanization of Black women during slavery. The Strong Black Woman became a survival necessity. And survival necessities get passed down through generations even after the context changes.</p><p>Today, that expectation has not fully released its grip. It lives in the way we were raised. In the praise we received as children for being tough. In the shame we felt the first time we broke down in front of someone.</p><h2>What suppression actually <em>does to us</em></h2><p>Research on emotional suppression is clear and consistent: when we chronically suppress what we feel, there are measurable physical and psychological consequences. Higher rates of hypertension. Higher rates of cardiovascular disease. Compromised immune function. Greater risk of depression and anxiety disorders.</p><blockquote>A 2022 study found that Black women who endorsed Strong Black Woman beliefs were significantly more likely to report symptoms of depression and post-traumatic stress while simultaneously being less likely to seek mental health treatment.</blockquote><p>We are suffering more and getting help less, and the belief that we should be able to handle it alone is directly implicated in both.</p><h2>Finding help that understands <em>you</em></h2><p>The Therapy for Black Girls directory at therapyforblackgirls.com is an excellent starting point for finding culturally competent Black therapists. Psychology Today's find a therapist tool allows you to filter by specialty and many providers offer sliding scale fees. Open Path Collective offers therapy for $30 to $80 per session for those who qualify.</p><h2>The permission slip you did not know <em>you needed</em></h2><p>Consider this your permission slip.</p><p>You are allowed to not be okay. You are allowed to need help. You are allowed to say I cannot do this alone. You are allowed to go to therapy, to lean on your community, to say no, to fall apart a little and then ask someone to help you put it back together.</p><p>You do not lose your strength by admitting you are human. You demonstrate it.</p><p>The strongest thing you will ever do might just be asking for help.</p>`},
+
+  {cat:"Health & Body",date:"November 2025",read:"8 min read",ph:"ph-lav2",phLight:true,
+   img:"../Images for Blog AI/CCCA.jpg",
+   alt:"A Black woman dealing with hair loss",
+   title:"Hair Loss After 50: What Black Women Need to Know",
+   content:`<p>Hair is not just hair for us.</p><p>I need to say that clearly before we get into any of the medical information, because every conversation about hair loss in Black women that skips past the emotional and cultural weight of it is missing the most important part.</p><p>For Black women, hair has always been about more than aesthetics. It is tied to identity, to history, to how the world receives us and how we receive ourselves. Our hair has been legislated against, policed in professional spaces, used as a basis for discrimination, and simultaneously celebrated as an expression of who we are. When Black women start losing their hair, they are not just losing hair. They are losing something that has been connected to their sense of self in ways that are profound and complex.</p><h2>The medical <em>reality</em></h2><p>Hair loss in women over fifty is more common than most people realize, and it is underdiagnosed and undertreated, particularly for Black women.</p><p>The most common causes include female pattern hair loss, which is hormonally driven and tends to accelerate around and after menopause. Traction alopecia, which results from years of tight hairstyles. Central Centrifugal Cicatricial Alopecia, known as CCCA, a form of scarring alopecia that disproportionately affects Black women and causes permanent hair loss if not caught and treated early.</p><blockquote>CCCA deserves particular attention because it is both common among Black women and seriously underdiagnosed. It presents as hair thinning and loss starting at the crown of the head. Because it causes scar tissue to form at the hair follicles, early intervention is essential.</blockquote><p>If you are noticing thinning at your crown, see a dermatologist who specializes in hair loss as soon as possible. Do not wait.</p><h2>The emotional weight, <em>honestly</em></h2><p>I want to give space to the grief, because it is real and it is valid. Losing hair changes how you look in the mirror. It changes how you feel walking into a room. It can affect intimacy, professional confidence, and the quiet, private relationship you have with your own reflection. This grief does not make you vain. It makes you human.</p><p>What I have also seen, though, is women on the other side of that grief who have found something remarkable. Women who stopped fighting their hair and started making peace with themselves. Women who shaved their heads and discovered a freedom and a power they did not expect. Every one of those paths is valid.</p><h2>What you can actually <em>do</em></h2><p>See a dermatologist who specializes in hair and scalp conditions, ideally one with experience treating Black patients. Ask specifically about CCCA if you are experiencing crown thinning.</p><p>Look at your overall health. Thyroid dysfunction, iron deficiency, and nutritional deficiencies all contribute to hair loss and are common and treatable. Ask your primary care doctor to check your iron levels, thyroid function, and vitamin D.</p><p>Find your community. There are online spaces and support communities specifically for Black women dealing with hair loss and alopecia. Connecting with women who understand the specific cultural and emotional dimensions of this experience can make an enormous difference.</p><p>And be gentle with yourself. Your hair is not your worth. But your feelings about it are real, and they deserve care.</p>`}
+];
+
+let currentPost = 0;
+
+function openPost(idx) {
+  currentPost = idx;
+  const p = POSTS[idx];
+  document.getElementById('post-cat-pill').textContent = p.cat;
+  document.getElementById('post-cat-pill').className = 'bcat';
+  document.getElementById('post-title').innerHTML = p.title;
+  document.getElementById('post-meta').textContent = p.date + ' · ' + p.read;
+  document.getElementById('post-content').innerHTML = p.content;
+  const imgWrap = document.getElementById('post-hero-img');
+  imgWrap.className = 'post-hero-img';
+  imgWrap.innerHTML = '<img src="'+p.img+'" alt="'+(p.alt||p.title)+'">';
+  showPage('post');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('nav-'+id);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleMob(){document.getElementById('mobMenu').classList.toggle('open');}
+function closeMob(){document.getElementById('mobMenu').classList.remove('open');}
+document.addEventListener('click',function(e){const m=document.getElementById('mobMenu');if(!m.contains(e.target)&&!e.target.classList.contains('hamburger'))m.classList.remove('open');});
+
+function filterB(cat,btn){
+  document.querySelectorAll('.bp-card').forEach(c=>{c.style.display=(cat==='all'||c.dataset.cat===cat)?'block':'none';});
+  if(btn){document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');}
+}
+
+function scrollNL(){document.getElementById('nl-section').scrollIntoView({behavior:'smooth'});}
+
+function handleNL(e){e.preventDefault();const s=document.getElementById('nl-ok');s.classList.add('show');e.target.reset();setTimeout(()=>s.classList.remove('show'),5000);}
+
+function selAmt(btn){document.querySelectorAll('.amtbtn').forEach(b=>b.classList.remove('sel'));btn.classList.add('sel');document.getElementById('camt').value='';}
+
+function handleDon(){const c=document.getElementById('camt').value,s=document.querySelector('.amtbtn.sel');if(!c&&!s){alert('Please select or enter a donation amount.');return;}const ok=document.getElementById('don-ok');ok.classList.add('show');setTimeout(()=>ok.classList.remove('show'),6000);}
+
+function handleCt(e){e.preventDefault();const ok=document.getElementById('ct-ok');ok.classList.add('show');e.target.reset();setTimeout(()=>ok.classList.remove('show'),5000);}
+
+document.getElementById('nav-home').classList.add('active');
+</script>
+</body>
+</html>
