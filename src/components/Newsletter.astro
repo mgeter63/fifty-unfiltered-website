@@ -1,0 +1,75 @@
+---
+/**
+ * Newsletter signup. Submits to /api/subscribe, which stores the address in the
+ * Resend Audience. Works with JavaScript off (plain form post + redirect back here)
+ * and with JavaScript on (inline success and error messages, no page reload).
+ */
+const { eyebrow = 'Join the Community', heading = 'Get the <em>Unfiltered</em> Truth Delivered' } = Astro.props;
+---
+
+<section class="nl-section" id="join">
+  <div class="nl-inner">
+    <div class="eyebrow">{eyebrow}</div>
+    <h2 set:html={heading} />
+    <p>Real talk straight to your inbox whenever a new post goes up. Written for women who have been through it and are still standing tall.</p>
+    <form class="nl-form" id="nl-form" method="post" action="/api/subscribe" novalidate>
+      <label class="sr-only" for="nl-email">Email address</label>
+      <input type="email" id="nl-email" name="email" placeholder="Your email address" autocomplete="email" required />
+      <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
+      <input type="hidden" name="redirect" value={Astro.url.pathname} />
+      <button type="submit" id="nl-btn">Subscribe</button>
+    </form>
+    <div id="nl-msg" class="nl-msg" role="status" aria-live="polite"></div>
+    <p class="nl-priv">No spam, ever. Unsubscribe with one click from any email. See the <a href="/privacy">privacy policy</a>.</p>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('nl-form') as HTMLFormElement | null;
+  const msg = document.getElementById('nl-msg') as HTMLDivElement | null;
+  const btn = document.getElementById('nl-btn') as HTMLButtonElement | null;
+
+  function show(text: string, kind: 'ok' | 'err') {
+    if (!msg) return;
+    msg.textContent = text;
+    msg.className = 'nl-msg show ' + kind;
+  }
+
+  // Messages after a no-JavaScript submit (the API redirects back with ?subscribed=... in the URL).
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('subscribed') === '1') show('You are in, sis. Welcome to the community. ✨', 'ok');
+  else if (params.get('subscribed') === 'exists') show('You are already on the list. Glad you are here. 💜', 'ok');
+  else if (params.get('subscribed') === '0') show(params.get('reason') || 'Something went wrong. Please try again in a moment.', 'err');
+  if (params.has('subscribed')) {
+    document.getElementById('join')?.scrollIntoView();
+    history.replaceState(null, '', window.location.pathname + '#join');
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      show('Please enter a valid email address.', 'err');
+      return;
+    }
+    if (btn) { btn.disabled = true; btn.textContent = 'Adding you…'; }
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ email, website: (form.elements.namedItem('website') as HTMLInputElement).value }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        show(data.message || 'You are in, sis. Welcome to the community. ✨', 'ok');
+        form.reset();
+      } else {
+        show(data.message || 'Something went wrong. Please try again in a moment.', 'err');
+      }
+    } catch {
+      show('Could not reach the server. Check your connection and try again.', 'err');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = 'Subscribe'; }
+    }
+  });
+</script>

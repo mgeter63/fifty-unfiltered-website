@@ -1,0 +1,35 @@
+---
+import { formatDate, postUrl, slugify, type Post } from '../lib/posts';
+
+interface Props {
+  post: Post;
+  featured?: boolean;
+  /** "home" uses the compact home-page card style; "blog" uses the blog-index card style. */
+  variant?: 'home' | 'blog';
+}
+const { post, featured = false, variant = 'blog' } = Astro.props;
+const { title, category, excerpt, date, readTime, coverImage, coverAlt } = post.data;
+const href = postUrl(post);
+const cardClass = variant === 'home' ? (featured ? 'bcard bcard-feat' : 'bcard') : 'bp-card';
+const imgClass = variant === 'home' ? 'bcard-img' : 'bp-card-img';
+const bodyClass = variant === 'home' ? 'bcard-body' : 'bp-card-body';
+---
+
+<article class={cardClass} data-cat={slugify(category)}>
+  <a class="card-link" href={href} aria-label={title}>
+    <div class={imgClass}>
+      {coverImage ? (
+        <img src={coverImage} alt={coverAlt ?? ''} loading="lazy" />
+      ) : (
+        <div class="card-img-ph"></div>
+      )}
+    </div>
+  </a>
+  <div class={bodyClass}>
+    <span class="bcat">{featured ? 'Featured • ' : ''}{category}</span>
+    <h3><a href={href}>{title}</a></h3>
+    <p>{excerpt}</p>
+    <div class="bmeta"><time datetime={date.toISOString()}>{formatDate(date)}</time> &bull; {readTime}</div>
+    <a class="bread" href={href}>Read the full post &rarr;</a>
+  </div>
+</article>

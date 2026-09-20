@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/posts';
+---
+
+<Base
+  title="Privacy Policy | Fifty and Unfiltered"
+  description="How Fifty and Unfiltered collects and uses your email address and other information, and how to unsubscribe or ask for your data to be deleted."
+>
+  <div class="legal">
+    <div class="eyebrow">Your Information</div>
+    <h1>Privacy Policy</h1>
+    <p class="legal-updated">Last updated: September 20, 2026</p>
+
+    <p>Fifty and Unfiltered (<a href={SITE.url}>fiftyandunfiltered.com</a>) is owned and operated by Mary Geter. This policy explains what information the site collects, how it is used, and the choices you have.</p>
+
+    <h2>The email signup</h2>
+    <p>When you subscribe to the newsletter, the site collects your <strong>email address</strong> and the <strong>date and time</strong> you signed up. That is all the signup form asks for.</p>
+    <p>Your address is stored with <strong>Resend</strong> (resend.com), the email service used to send the newsletter. It is used only to send you Fifty and Unfiltered emails: new blog posts, occasional notes from Mary, and news about Fifty and Unfiltered projects. Your address is never sold, rented, or shared with any other business for their marketing.</p>
+    <p>Every email includes an unsubscribe link. Click it once and you are removed immediately. You can also email <a href={`mailto:${SITE.email}`}>{SITE.email}</a> and ask to be removed or to have your address deleted entirely.</p>
+
+    <h2>The contact form</h2>
+    <p>When you send a message through the contact page, the site collects the name, email address, topic, and message you type. That message is delivered to Mary by email so she can reply. It is not added to the newsletter list.</p>
+
+    <h2>Website analytics</h2>
+    <p>The site uses Google Analytics to understand which pages are read and how visitors find the site. Google Analytics collects information such as pages visited, approximate location, device type, and referring website, using cookies. This information is aggregated and does not identify you by name. You can block analytics cookies in your browser or with the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics opt-out add-on</a>.</p>
+
+    <h2>Hosting</h2>
+    <p>The site is hosted on Vercel, which may keep standard server logs (such as IP address and browser type) for security and to keep the site running.</p>
+
+    <h2>Children</h2>
+    <p>This site is written for adults and does not knowingly collect information from anyone under 18.</p>
+
+    <h2>Your choices and rights</h2>
+    <ul>
+      <li>Unsubscribe from any email with the link at the bottom of the message.</li>
+      <li>Ask to see, correct, or delete the information held about you by emailing <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</li>
+      <li>Block cookies in your browser settings.</li>
+    </ul>
+
+    <h2>Changes</h2>
+    <p>If this policy changes, the new version will be posted here with a new date at the top.</p>
+
+    <h2>Contact</h2>
+    <p>Mary Geter, Fifty and Unfiltered<br />P.O. Box 13146, Jackson, MS 39236<br /><a href={`mailto:${SITE.email}`}>{SITE.email}</a></p>
+  </div>
+</Base>

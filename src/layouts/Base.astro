@@ -1,0 +1,159 @@
+---
+import '../styles/global.css';
+import { SITE, absoluteUrl } from '../lib/posts';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path or absolute URL of the social sharing image. */
+  image?: string;
+  imageAlt?: string;
+  /** "article" for blog posts, "website" for everything else. */
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  /** Extra JSON-LD to include in the head. */
+  schema?: Record<string, unknown>;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  image = SITE.defaultImage,
+  imageAlt = 'Mary Geter, founder of Fifty and Unfiltered',
+  type = 'website',
+  publishedTime,
+  schema,
+  noindex = false,
+} = Astro.props;
+
+const canonical = absoluteUrl(Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, ''));
+const ogImage = absoluteUrl(image);
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: SITE.name,
+  description: SITE.description,
+  url: SITE.url,
+  author: { '@type': 'Person', name: SITE.author },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={SITE.author} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title={`${SITE.name} RSS`} href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <meta property="og:type" content={type} />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:locale" content="en_US" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {type === 'article' && <meta property="article:author" content={SITE.author} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="pinterest-rich-pin" content="true" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schema ?? siteSchema)} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Google Analytics GA4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WCXB71XRMW"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-WCXB71XRMW');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav aria-label="Main">
+      <a class="nav-logo" href="/">
+        <div class="nav-logo-main">Fifty &amp; <em>Unfiltered</em></div>
+        <div class="nav-logo-sub">Your Truth &bull; Your Voice &bull; Your Space</div>
+      </a>
+      <ul class="nav-links">
+        {navLinks.map((l) => (
+          <li><a href={l.href} class:list={{ active: isActive(l.href) }} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a></li>
+        ))}
+        <li><a href="/#join" class="nav-cta">Join the List</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobMenu">&#9776;</button>
+    </nav>
+    <div class="mob-menu" id="mobMenu">
+      {navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href="/#join" style="color:var(--lav);">Join the List</a>
+    </div>
+
+    <main id="main" class="page-wrap">
+      <slot />
+    </main>
+
+    <footer>
+      <div class="foot-inner">
+        <div class="foot-brand">
+          <div class="foot-brand-name">Fifty &amp; <em>Unfiltered</em></div>
+          <div class="foot-brand-tag">Your Truth &bull; Your Voice &bull; Your Space</div>
+          <p>A warm, honest space for Black women over 50 navigating love, health, money, identity, and everything in between. No sugarcoating. Just real talk.</p>
+        </div>
+        <div class="foot-col"><h4>Navigate</h4><a href="/">Home</a><a href="/about">About Mary</a><a href="/blog">Blog</a><a href="/contact">Contact</a><a href="/#join">Newsletter</a></div>
+        <div class="foot-col"><h4>Topics</h4><a href="/blog#relationships">Relationships</a><a href="/blog#mental-health">Mental Health</a><a href="/blog#health-and-body">Health &amp; Body</a><a href="/blog#money">Money</a><a href="/blog#identity">Identity</a><a href="/blog#grown-folks-business">Grown Folks Business</a></div>
+        <div class="foot-col"><h4>Connect</h4><a href="https://www.instagram.com/keepupwithmg" target="_blank" rel="noopener">@keepupwithmg</a><a href="https://www.instagram.com/fiftyunfiltered" target="_blank" rel="noopener">@fiftyunfiltered</a><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a><a href="https://www.pinterest.com" target="_blank" rel="noopener">Pinterest</a><a href="/rss.xml">RSS Feed</a></div>
+      </div>
+      <div class="foot-btm">
+        <span>&copy; {new Date().getFullYear()} Fifty and Unfiltered &mdash; Mary Geter's Creative Space. All content the heart and soul of Mary Geter.</span>
+        <span class="foot-legal"><a href="/disclaimer">Disclaimer</a> &bull; <a href="/privacy">Privacy Policy</a></span>
+      </div>
+    </footer>
+
+    <script>
+      const btn = document.getElementById('hamburger');
+      const menu = document.getElementById('mobMenu');
+      if (btn && menu) {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const open = menu.classList.toggle('open');
+          btn.setAttribute('aria-expanded', String(open));
+        });
+        document.addEventListener('click', (e) => {
+          if (!menu.contains(e.target as Node)) {
+            menu.classList.remove('open');
+            btn.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

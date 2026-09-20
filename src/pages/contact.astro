@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/posts';
+---
+
+<Base
+  title="Contact | Fifty and Unfiltered"
+  description="Get in touch with Mary Geter of Fifty and Unfiltered. Blog topic suggestions, partnership inquiries, media requests, or just to say hello."
+>
+  <div class="ct-hero">
+    <div class="eyebrow" style="justify-content:center;">Say Hello</div>
+    <h1>Get in <em>Touch</em></h1>
+    <p>A real woman reads every message. Please do not hesitate to reach out.</p>
+  </div>
+  <div class="ct-body"><div class="ct-inner">
+    <div class="ct-info">
+      <h2>Connect With <em>Mary</em></h2>
+      <div class="cti"><div class="ctl">Email</div><div class="ctv"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></div></div>
+      <div class="cti"><div class="ctl">Phone</div><div class="ctv">769.300.1156</div></div>
+      <div class="cti"><div class="ctl">Mailing Address</div><div class="ctv">P.O. Box 13146<br />Jackson, MS 39236</div></div>
+      <div class="cti"><div class="ctl">Follow Mary</div>
+        <div class="schips" style="margin-top:0.5rem;">
+          <a class="schip" href="https://www.instagram.com/keepupwithmg" target="_blank" rel="noopener">Instagram</a>
+          <a class="schip" href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+          <a class="schip" href="https://www.pinterest.com" target="_blank" rel="noopener">Pinterest</a>
+        </div>
+      </div>
+    </div>
+    <div class="ct-form">
+      <h2>Send a <em>Message</em></h2>
+      <form id="ct-form" method="post" action="/api/contact" novalidate>
+        <div class="ff"><label for="ct-name">Your Name</label><input id="ct-name" name="name" type="text" placeholder="First and last name" autocomplete="name" required /></div>
+        <div class="ff"><label for="ct-email">Email Address</label><input id="ct-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required /></div>
+        <div class="ff"><label for="ct-topic">What is this about?</label><select id="ct-topic" name="topic"><option>General Message</option><option>Blog Topic Suggestion</option><option>Community &amp; Events</option><option>Partnership Inquiry</option><option>Media &amp; Press</option></select></div>
+        <div class="ff"><label for="ct-message">Your Message</label><textarea id="ct-message" name="message" placeholder="Say what is on your mind..." required></textarea></div>
+        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
+        <button type="submit" class="fsub" id="ct-btn">Send Message</button>
+        <div id="ct-msg" class="toast" role="status" aria-live="polite"></div>
+      </form>
+      <p class="ct-alt">Prefer email? Write to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+    </div>
+  </div></div>
+</Base>
+
+<script>
+  const form = document.getElementById('ct-form') as HTMLFormElement | null;
+  const msg = document.getElementById('ct-msg') as HTMLDivElement | null;
+  const btn = document.getElementById('ct-btn') as HTMLButtonElement | null;
+  const show = (text: string, ok: boolean) => {
+    if (!msg) return;
+    msg.textContent = text;
+    msg.className = 'toast show ' + (ok ? 'ok' : 'err');
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('sent') === '1') show('Your message has been sent. Mary will be in touch soon. 💕', true);
+  else if (params.get('sent') === '0') show(params.get('reason') || 'Your message could not be sent. Please email Mary directly.', false);
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    if (!data.name || !data.email || !data.message) { show('Please fill in your name, email, and message.', false); return; }
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(data),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (res.ok && out.ok) { show(out.message || 'Your message has been sent. Mary will be in touch soon. 💕', true); form.reset(); }
+      else show(out.message || 'Your message could not be sent. Please email Mary directly.', false);
+    } catch {
+      show('Could not reach the server. Please email Mary directly.', false);
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+    }
+  });
+</script>

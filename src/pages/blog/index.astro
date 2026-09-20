@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro';
+import PostCard from '../../components/PostCard.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { getPosts, allCategories, slugify, SITE } from '../../lib/posts';
+
+const posts = await getPosts();
+const categories = allCategories(posts);
+const counts = posts.reduce<Record<string, number>>((acc, p) => {
+  const k = slugify(p.data.category);
+  acc[k] = (acc[k] ?? 0) + 1;
+  return acc;
+}, {});
+---
+
+<Base
+  title="The Blog | Fifty and Unfiltered"
+  description="Every post from Fifty and Unfiltered: real conversations about love, health, money, identity, family, and friendship for Black women over 50."
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: SITE.name,
+    url: `${SITE.url}/blog`,
+    author: { '@type': 'Person', name: SITE.author },
+    blogPost: posts.map((p) => ({
+      '@type': 'BlogPosting',
+      headline: p.data.title,
+      url: `${SITE.url}/blog/${p.data.slug}`,
+      datePublished: p.data.date.toISOString(),
+    })),
+  }}
+>
+  <div class="bp-hero">
+    <div class="eyebrow" style="justify-content:center;">Unfiltered Perspectives</div>
+    <h1>The <em>Blog</em></h1>
+    <p>Real conversations about the things that matter to women over 50. No fluff. No filler. Just the truth.</p>
+  </div>
+
+  <div class="bfilters" id="bfilters" role="group" aria-label="Filter posts by category">
+    <button class="fbtn active" data-cat="all" type="button">All Posts <span class="fcount">{posts.length}</span></button>
+    {categories.map((c) => (
+      <button class="fbtn" data-cat={slugify(c)} type="button">{c}{counts[slugify(c)] ? <span class="fcount">{counts[slugify(c)]}</span> : null}</button>
+    ))}
+  </div>
+
+  <div class="bp-grid" id="bp-grid">
+    {posts.map((post) => <PostCard post={post} variant="blog" />)}
+  </div>
+  <p class="bp-empty" id="bp-empty" hidden>No posts in this category yet. Check back soon, or <a href="/blog" data-cat="all" class="reset-filter">see all posts</a>.</p>
+
+  <Newsletter eyebrow="Never Miss a Post" />
+</Base>
+
+<script>
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('#bfilters .fbtn'));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('#bp-grid .bp-card'));
+  const empty = document.getElementById('bp-empty');
+
+  function apply(cat: string, push = true) {
+    let shown = 0;
+    cards.forEach((c) => {
+      const match = cat === 'all' || c.dataset.cat === cat;
+      c.style.display = match ? '' : 'none';
+      if (match) shown++;
+    });
+    buttons.forEach((b) => {
+      const on = b.dataset.cat === cat;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    if (empty) empty.hidden = shown > 0;
+    if (push) history.replaceState(null, '', cat === 'all' ? '/blog' : `/blog#${cat}`);
+  }
+
+  buttons.forEach((b) => b.addEventListener('click', () => apply(b.dataset.cat || 'all')));
+  document.querySelector('.reset-filter')?.addEventListener('click', (e) => { e.preventDefault(); apply('all'); });
+
+  const fromHash = () => {
+    const cat = decodeURIComponent(window.location.hash.slice(1));
+    if (cat && buttons.some((b) => b.dataset.cat === cat)) apply(cat, false);
+  };
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+</script>
