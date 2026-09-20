@@ -7,39 +7,39 @@ import { SITE } from '../lib/posts';
   title="Contact | Fifty and Unfiltered"
   description="Get in touch with Mary Geter of Fifty and Unfiltered. Blog topic suggestions, partnership inquiries, media requests, or just to say hello."
 >
-  <div class="ct-hero">
-    <div class="eyebrow" style="justify-content:center;">Say Hello</div>
-    <h1>Get in <em>Touch</em></h1>
-    <p>A real woman reads every message. Please do not hesitate to reach out.</p>
+  <div class="blog-hero wrap" data-reveal>
+    <div class="kicker">Say Hello</div>
+    <h1>Get in <span>Touch</span></h1>
+    <p class="lead">A real woman reads every message. Please do not hesitate to reach out.</p>
   </div>
-  <div class="ct-body"><div class="ct-inner">
-    <div class="ct-info">
-      <h2>Connect With <em>Mary</em></h2>
-      <div class="cti"><div class="ctl">Email</div><div class="ctv"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></div></div>
-      <div class="cti"><div class="ctl">Phone</div><div class="ctv">769.300.1156</div></div>
-      <div class="cti"><div class="ctl">Mailing Address</div><div class="ctv">P.O. Box 13146<br />Jackson, MS 39236</div></div>
-      <div class="cti"><div class="ctl">Follow Mary</div>
-        <div class="schips" style="margin-top:0.5rem;">
-          <a class="schip" href="https://www.instagram.com/keepupwithmg" target="_blank" rel="noopener">Instagram</a>
-          <a class="schip" href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
-          <a class="schip" href="https://www.pinterest.com" target="_blank" rel="noopener">Pinterest</a>
+  <section class="section-tight">
+    <div class="wrap two">
+      <div class="panel" data-reveal>
+        <h2>Connect With <em>Mary</em></h2>
+        <div class="row"><span class="k">Email</span><span><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span></div>
+        <div class="row"><span class="k">Phone</span><span>769.300.1156</span></div>
+        <div class="row"><span class="k">Mail</span><span>P.O. Box 13146<br />Jackson, MS 39236</span></div>
+        <div class="chips">
+          <a class="chip" href="https://www.instagram.com/keepupwithmg" target="_blank" rel="noopener">Instagram</a>
+          <a class="chip" href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+          <a class="chip" href="https://www.pinterest.com" target="_blank" rel="noopener">Pinterest</a>
         </div>
       </div>
+      <div data-reveal data-delay="1">
+        <h2 class="sh" style="font-size:clamp(1.8rem,4vw,2.8rem);">Send a <em>Message</em></h2>
+        <form class="form" id="ct-form" method="post" action="/api/contact" novalidate>
+          <div class="ff"><label for="ct-name">Your Name</label><input id="ct-name" name="name" type="text" placeholder="First and last name" autocomplete="name" required /></div>
+          <div class="ff"><label for="ct-email">Email Address</label><input id="ct-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required /></div>
+          <div class="ff"><label for="ct-topic">What is this about?</label><select id="ct-topic" name="topic"><option>General Message</option><option>Blog Topic Suggestion</option><option>Community &amp; Events</option><option>Partnership Inquiry</option><option>Media &amp; Press</option></select></div>
+          <div class="ff"><label for="ct-message">Your Message</label><textarea id="ct-message" name="message" placeholder="Say what is on your mind..." required></textarea></div>
+          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
+          <button type="submit" class="btn btn-fuchsia" id="ct-btn">Send Message</button>
+          <div id="ct-msg" class="toast" role="status" aria-live="polite"></div>
+        </form>
+        <p class="note">Prefer email? Write to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+      </div>
     </div>
-    <div class="ct-form">
-      <h2>Send a <em>Message</em></h2>
-      <form id="ct-form" method="post" action="/api/contact" novalidate>
-        <div class="ff"><label for="ct-name">Your Name</label><input id="ct-name" name="name" type="text" placeholder="First and last name" autocomplete="name" required /></div>
-        <div class="ff"><label for="ct-email">Email Address</label><input id="ct-email" name="email" type="email" placeholder="your@email.com" autocomplete="email" required /></div>
-        <div class="ff"><label for="ct-topic">What is this about?</label><select id="ct-topic" name="topic"><option>General Message</option><option>Blog Topic Suggestion</option><option>Community &amp; Events</option><option>Partnership Inquiry</option><option>Media &amp; Press</option></select></div>
-        <div class="ff"><label for="ct-message">Your Message</label><textarea id="ct-message" name="message" placeholder="Say what is on your mind..." required></textarea></div>
-        <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
-        <button type="submit" class="fsub" id="ct-btn">Send Message</button>
-        <div id="ct-msg" class="toast" role="status" aria-live="polite"></div>
-      </form>
-      <p class="ct-alt">Prefer email? Write to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
-    </div>
-  </div></div>
+  </section>
 </Base>
 
 <script>
@@ -53,7 +53,7 @@ import { SITE } from '../lib/posts';
   };
 
   const params = new URLSearchParams(window.location.search);
-  if (params.get('sent') === '1') show('Your message has been sent. Mary will be in touch soon. 💕', true);
+  if (params.get('sent') === '1') show('Your message has been sent. Mary will be in touch soon.', true);
   else if (params.get('sent') === '0') show(params.get('reason') || 'Your message could not be sent. Please email Mary directly.', false);
 
   form?.addEventListener('submit', async (e) => {
@@ -68,7 +68,7 @@ import { SITE } from '../lib/posts';
         body: JSON.stringify(data),
       });
       const out = await res.json().catch(() => ({}));
-      if (res.ok && out.ok) { show(out.message || 'Your message has been sent. Mary will be in touch soon. 💕', true); form.reset(); }
+      if (res.ok && out.ok) { show(out.message || 'Your message has been sent. Mary will be in touch soon.', true); form.reset(); }
       else show(out.message || 'Your message could not be sent. Please email Mary directly.', false);
     } catch {
       show('Could not reach the server. Please email Mary directly.', false);

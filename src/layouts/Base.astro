@@ -14,6 +14,8 @@ interface Props {
   /** Extra JSON-LD to include in the head. */
   schema?: Record<string, unknown>;
   noindex?: boolean;
+  /** true on the home page so the hero runs under the transparent nav */
+  fullBleed?: boolean;
 }
 
 const {
@@ -25,6 +27,7 @@ const {
   publishedTime,
   schema,
   noindex = false,
+  fullBleed = false,
 } = Astro.props;
 
 const canonical = absoluteUrl(Astro.url.pathname === '/' ? '/' : Astro.url.pathname.replace(/\/$/, ''));
@@ -81,12 +84,9 @@ const siteSchema = {
 
     <script type="application/ld+json" set:html={JSON.stringify(schema ?? siteSchema)} />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Self-hosted fonts (Oswald + Lato, subset to Latin, ~120 KB total). No Google Fonts request. -->
+    <link rel="preload" href="/fonts/oswald-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/lato-regular.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Google Analytics GA4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WCXB71XRMW"></script>
@@ -99,11 +99,8 @@ const siteSchema = {
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <nav aria-label="Main">
-      <a class="nav-logo" href="/">
-        <div class="nav-logo-main">Fifty &amp; <em>Unfiltered</em></div>
-        <div class="nav-logo-sub">Your Truth &bull; Your Voice &bull; Your Space</div>
-      </a>
+    <nav class="nav" aria-label="Main">
+      <a class="logo" href="/">Fifty <span>&amp;</span> Unfiltered<small>No filter. No apology.</small></a>
       <ul class="nav-links">
         {navLinks.map((l) => (
           <li><a href={l.href} class:list={{ active: isActive(l.href) }} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a></li>
@@ -114,31 +111,60 @@ const siteSchema = {
     </nav>
     <div class="mob-menu" id="mobMenu">
       {navLinks.map((l) => <a href={l.href}>{l.label}</a>)}
-      <a href="/#join" style="color:var(--lav);">Join the List</a>
+      <a href="/#join" class="cta">Join the List</a>
     </div>
 
-    <main id="main" class="page-wrap">
+    <main id="main" class:list={['page-wrap', { 'no-pad': fullBleed }]}>
       <slot />
     </main>
 
     <footer>
-      <div class="foot-inner">
+      <div class="foot">
         <div class="foot-brand">
-          <div class="foot-brand-name">Fifty &amp; <em>Unfiltered</em></div>
-          <div class="foot-brand-tag">Your Truth &bull; Your Voice &bull; Your Space</div>
-          <p>A warm, honest space for Black women over 50 navigating love, health, money, identity, and everything in between. No sugarcoating. Just real talk.</p>
+          <a class="logo" href="/">Fifty <span>&amp;</span> Unfiltered</a>
+          <p>Grown woman conversations for Black women over 50. Love, health, money, identity, and everything nobody warned us about.</p>
         </div>
         <div class="foot-col"><h4>Navigate</h4><a href="/">Home</a><a href="/about">About Mary</a><a href="/blog">Blog</a><a href="/contact">Contact</a><a href="/#join">Newsletter</a></div>
-        <div class="foot-col"><h4>Topics</h4><a href="/blog#relationships">Relationships</a><a href="/blog#mental-health">Mental Health</a><a href="/blog#health-and-body">Health &amp; Body</a><a href="/blog#money">Money</a><a href="/blog#identity">Identity</a><a href="/blog#grown-folks-business">Grown Folks Business</a></div>
+        <div class="foot-col"><h4>Topics</h4><a href="/blog#relationships">Relationships</a><a href="/blog#mental-health">Mental Health</a><a href="/blog#health-and-body">Health &amp; Body</a><a href="/blog#money">Money</a><a href="/blog#grown-folks-business">Grown Folks Business</a><a href="/blog#i-dont-do-that-anymore">I Don't Do That Anymore</a></div>
         <div class="foot-col"><h4>Connect</h4><a href="https://www.instagram.com/keepupwithmg" target="_blank" rel="noopener">@keepupwithmg</a><a href="https://www.instagram.com/fiftyunfiltered" target="_blank" rel="noopener">@fiftyunfiltered</a><a href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a><a href="https://www.pinterest.com" target="_blank" rel="noopener">Pinterest</a><a href="/rss.xml">RSS Feed</a></div>
       </div>
       <div class="foot-btm">
-        <span>&copy; {new Date().getFullYear()} Fifty and Unfiltered &mdash; Mary Geter's Creative Space. All content the heart and soul of Mary Geter.</span>
-        <span class="foot-legal"><a href="/disclaimer">Disclaimer</a> &bull; <a href="/privacy">Privacy Policy</a></span>
+        <span>&copy; {new Date().getFullYear()} Fifty and Unfiltered. All content the heart and soul of Mary Geter.</span>
+        <span><a href="/disclaimer">Disclaimer</a> &nbsp;&bull;&nbsp; <a href="/privacy">Privacy Policy</a></span>
       </div>
     </footer>
 
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <script>
+      // Reveal on scroll: elements with data-reveal fade and rise once as they enter the viewport.
+      // Belt and braces: IntersectionObserver plus a cheap scroll/resize check, so nothing can stay hidden.
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let pending = Array.from(document.querySelectorAll<HTMLElement>('[data-reveal]'));
+      const reveal = (el: HTMLElement) => { el.classList.add('in'); pending = pending.filter((p) => p !== el); };
+      if (reduce) {
+        pending.forEach((el) => el.classList.add('in'));
+        pending = [];
+      } else {
+        const check = () => {
+          const limit = window.innerHeight * 0.96;
+          pending.slice().forEach((el) => { if (el.getBoundingClientRect().top < limit) reveal(el); });
+        };
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries) => {
+            entries.forEach((en) => { if (en.isIntersecting) { reveal(en.target as HTMLElement); io.unobserve(en.target); } });
+          }, { rootMargin: '0px 0px -4% 0px', threshold: 0.01 });
+          pending.forEach((el) => io.observe(el));
+        }
+        let ticking = false;
+        const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { check(); ticking = false; }); } };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        window.addEventListener('load', check);
+        check();
+        // Safety net: anything still hidden 4 seconds after it scrolls into range gets shown regardless.
+        window.setInterval(check, 1000);
+      }
+
       const btn = document.getElementById('hamburger');
       const menu = document.getElementById('mobMenu');
       if (btn && menu) {

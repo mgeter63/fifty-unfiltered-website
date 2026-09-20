@@ -18,48 +18,54 @@ import { SITE } from '../lib/posts';
     sameAs: ['https://www.instagram.com/keepupwithmg', 'https://www.instagram.com/fiftyunfiltered'],
   }}
 >
-  <div class="ab-hero"><div class="ab-inner">
-    <div>
-      <div class="eyebrow">The Woman Behind the Work</div>
-      <h1>Hey There.<br />I'm <em>Mary.</em></h1>
-      <p>I am an African American entrepreneur, content creator, and the woman who got tired of having quiet conversations alone in her head and decided to say them out loud instead.</p>
-      <blockquote>"My journey through the isolating experience of being a single, brown-skinned woman navigating predominantly white spaces, while entering my 50s, inspired me to create Fifty and Unfiltered."</blockquote>
+  <div class="about-hero">
+    <div data-reveal>
+      <div class="kicker">The Woman Behind the Work</div>
+      <h1>Hey There.<br />I'm <span>Mary.</span></h1>
+      <p>I am a 60 year old African American entrepreneur, content creator, and the woman who got tired of having quiet conversations alone in her head and decided to say them out loud instead.</p>
+      <div class="pull">My journey through the isolating experience of being a single, brown-skinned woman navigating predominantly white spaces, while entering my 50s, inspired me to create Fifty and Unfiltered.</div>
       <p>With a background in civil rights compliance, contract compliance, and public administration spanning more than 18 years, I spent my career advocating for others. Now I am advocating for us.</p>
     </div>
-    <div class="ab-photo"><img src="/images/img13.jpg" alt="Mary Geter, founder of Fifty and Unfiltered, pointing to her Black and Legendary shirt with joy" style="width:100%;height:100%;object-fit:cover;object-position:center 5%;" /></div>
-  </div></div>
-
-  <div class="ab-mission"><div class="ab-mission-inner">
-    <div class="eyebrow" style="justify-content:center;">Our Purpose</div>
-    <h2>The Mission Behind <em>Fifty and Unfiltered</em></h2>
-    <p>Fifty and Unfiltered exists because Black women over 50 deserve a space that reflects our real lives. Not the sanitized version. The actual truth of what it means to navigate love, loss, health, money, and identity when the world expects us to be invisible.</p>
-    <p>Here, we are not invisible. We are the whole conversation. We hold each other up and refuse to let anyone rush us through this chapter.</p>
-    <div class="mqbox"><p>"Your story and your strength matter. And I want to hear it."</p><cite>Mary Geter</cite></div>
-  </div></div>
-
-  <div class="ab-connect"><div class="ab-connect-inner">
-    <div>
-      <div class="eyebrow">Background</div>
-      <h2>More Than <em>a Blog</em></h2>
-      <p>Mary holds a Master of Science in Counseling Education from Mississippi State University and a Bachelor of Science in Business Administration from Mississippi University for Women.</p>
-      <p>With more than 35 years in business management, contract compliance, civil rights, and public administration, Mary has built a career advocating for others in spaces that were not always built for women like her. Fifty and Unfiltered is her independent creative space: personal commentary, honest stories, and a community of women who are done being quiet.</p>
-      <a class="btn-lav" href="/blog" style="margin-top:1.25rem;">Read the Blog &rarr;</a>
+    <div class="about-photo" data-reveal data-delay="1">
+      <img src="/images/img13.jpg" alt="Mary Geter, founder of Fifty and Unfiltered, pointing to her Black and Legendary shirt with joy" />
     </div>
-    <div class="ic">
-      <h2 style="font-size:1.3rem;margin-bottom:1.5rem;">Connect With <em>Mary</em></h2>
-      <div class="ir"><div class="il">Email</div><div class="iv"><a href={`mailto:${SITE.email}`}>{SITE.email}</a></div></div>
-      <div class="ir"><div class="il">Phone</div><div class="iv">769.300.1156</div></div>
-      <div class="ir"><div class="il">Mailing Address</div><div class="iv">P.O. Box 13146, Jackson, MS 39236</div></div>
-      <div class="ir"><div class="il">Based In</div><div class="iv">Mississippi, United States</div></div>
-      <div class="schips">
-        <a class="schip" href="https://www.instagram.com/keepupwithmg" target="_blank" rel="noopener">&#128247; @keepupwithmg</a>
-        <a class="schip" href="https://www.instagram.com/fiftyunfiltered" target="_blank" rel="noopener">&#128247; @fiftyunfiltered</a>
-        <a class="schip" href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
-        <a class="schip" href="https://www.pinterest.com" target="_blank" rel="noopener">Pinterest</a>
+  </div>
+
+  <section class="section mission">
+    <div class="wrap center" data-reveal>
+      <div class="kicker">Our Purpose</div>
+      <h2 class="sh">The Mission Behind <em>Fifty and Unfiltered</em></h2>
+      <p class="lead">Fifty and Unfiltered exists because Black women over 50 deserve a space that reflects our real lives. Not the sanitized version. The actual truth of what it means to navigate love, loss, health, money, and identity when the world expects us to be invisible.</p>
+      <p class="lead">Here, we are not invisible. We are the whole conversation. We hold each other up and refuse to let anyone rush us through this chapter.</p>
+      <blockquote class="mission-quote">Your story and your strength matter. And I want to hear it.<cite>Mary Geter</cite></blockquote>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two">
+      <div data-reveal>
+        <div class="kicker">Background</div>
+        <h2 class="sh">More Than <em>a Blog</em></h2>
+        <p>Mary holds a Master of Science in Counseling Education from Mississippi State University and a Bachelor of Science in Business Administration from Mississippi University for Women.</p>
+        <p>With more than 35 years in business management, contract compliance, civil rights, and public administration, Mary has built a career advocating for others in spaces that were not always built for women like her. Fifty and Unfiltered is her independent creative space: personal commentary, honest stories, and a community of women who are done being quiet.</p>
+        <a class="btn btn-fuchsia" href="/blog" style="margin-top:.5rem;">Read the Blog &rarr;</a>
       </div>
-      <a class="btn-ghost" href="/contact" style="margin-top:1.5rem;display:inline-block;">Send a Message</a>
+      <div class="panel" data-reveal data-delay="1">
+        <h2>Connect With <em>Mary</em></h2>
+        <div class="row"><span class="k">Email</span><span><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span></div>
+        <div class="row"><span class="k">Phone</span><span>769.300.1156</span></div>
+        <div class="row"><span class="k">Mail</span><span>P.O. Box 13146, Jackson, MS 39236</span></div>
+        <div class="row"><span class="k">Based In</span><span>Mississippi, United States</span></div>
+        <div class="chips">
+          <a class="chip" href="https://www.instagram.com/keepupwithmg" target="_blank" rel="noopener">@keepupwithmg</a>
+          <a class="chip" href="https://www.instagram.com/fiftyunfiltered" target="_blank" rel="noopener">@fiftyunfiltered</a>
+          <a class="chip" href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+          <a class="chip" href="https://www.pinterest.com" target="_blank" rel="noopener">Pinterest</a>
+        </div>
+        <a class="btn btn-outline" href="/contact">Send a Message</a>
+      </div>
     </div>
-  </div></div>
+  </section>
 
   <Newsletter />
 </Base>

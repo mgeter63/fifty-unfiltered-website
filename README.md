@@ -17,6 +17,19 @@ A post with `draft: true` in its frontmatter is hidden from the live site.
 
 Locally you can run `npm run new-post -- "Post Title" "Category"` to create the file with today's date.
 
+## Hero video, reel wall, quote slider
+
+- **Hero video:** upload `hero.mp4` (muted, 10 to 20 seconds, 1920x1080, under 8 MB) to `public/video/`. It plays automatically behind the headline; the photo stays as the fallback and for visitors with reduced motion turned on. Optional `hero.webm` alongside it.
+- **Hero photo:** upload a landscape `hero.jpg` to `public/images/` to replace the current one.
+- **Reel wall:** upload the MP4 and a poster JPG to `public/reels/`, then add a block to `content/reels.json`.
+- **Quote slider:** edit the lines in `content/quotes.json`.
+
+Full step-by-step in `content/REELS-AND-QUOTES.md`.
+
+## Design
+
+Rich Black `#1A1A1A` base, Bold Fuchsia `#CC0066` and Gold `#D4AF37` accents only. Oswald (headlines, uppercase) and Lato (body), self-hosted in `public/fonts/` under the SIL Open Font License. Scroll animations and the background video respect the visitor's reduced-motion setting.
+
 ## Categories
 
 Filter buttons on `/blog` come from `CATEGORIES` in `src/lib/posts.ts`. Any new category used in a post's frontmatter is added to the filters automatically.

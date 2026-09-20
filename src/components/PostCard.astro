@@ -3,33 +3,40 @@ import { formatDate, postUrl, slugify, type Post } from '../lib/posts';
 
 interface Props {
   post: Post;
-  featured?: boolean;
-  /** "home" uses the compact home-page card style; "blog" uses the blog-index card style. */
-  variant?: 'home' | 'blog';
+  /** "feature" is the large full-width card; "grid" is the standard magazine card. */
+  variant?: 'feature' | 'grid';
+  delay?: number;
+  headingLevel?: 'h2' | 'h3';
 }
-const { post, featured = false, variant = 'blog' } = Astro.props;
+const { post, variant = 'grid', delay = 0, headingLevel = 'h3' } = Astro.props;
 const { title, category, excerpt, date, readTime, coverImage, coverAlt } = post.data;
 const href = postUrl(post);
-const cardClass = variant === 'home' ? (featured ? 'bcard bcard-feat' : 'bcard') : 'bp-card';
-const imgClass = variant === 'home' ? 'bcard-img' : 'bp-card-img';
-const bodyClass = variant === 'home' ? 'bcard-body' : 'bp-card-body';
+const H = headingLevel;
 ---
 
-<article class={cardClass} data-cat={slugify(category)}>
-  <a class="card-link" href={href} aria-label={title}>
-    <div class={imgClass}>
-      {coverImage ? (
-        <img src={coverImage} alt={coverAlt ?? ''} loading="lazy" />
-      ) : (
-        <div class="card-img-ph"></div>
-      )}
+{variant === 'feature' ? (
+  <article class="feature" data-cat={slugify(category)} data-reveal>
+    <div class="feature-img">
+      {coverImage && <img src={coverImage} alt={coverAlt ?? ''} loading="eager" decoding="async" />}
     </div>
-  </a>
-  <div class={bodyClass}>
-    <span class="bcat">{featured ? 'Featured • ' : ''}{category}</span>
-    <h3><a href={href}>{title}</a></h3>
-    <p>{excerpt}</p>
-    <div class="bmeta"><time datetime={date.toISOString()}>{formatDate(date)}</time> &bull; {readTime}</div>
-    <a class="bread" href={href}>Read the full post &rarr;</a>
-  </div>
-</article>
+    <div class="feature-body">
+      <div><span class="tag">{category}</span> <span class="tag tag-ghost">Newest</span></div>
+      <H><a href={href}>{title}</a></H>
+      <p>{excerpt}</p>
+      <div class="card-meta"><b><time datetime={date.toISOString()}>{formatDate(date)}</time></b> &nbsp;/&nbsp; {readTime}</div>
+      <div><span class="btn btn-gold">Read it &rarr;</span></div>
+    </div>
+  </article>
+) : (
+  <article class="card" data-cat={slugify(category)} data-reveal data-delay={delay || undefined}>
+    <div class="card-img">
+      {coverImage && <img src={coverImage} alt={coverAlt ?? ''} loading="lazy" decoding="async" />}
+    </div>
+    <div class="card-body">
+      <div><span class="tag">{category}</span></div>
+      <H><a href={href}>{title}</a></H>
+      <p>{excerpt}</p>
+      <div class="card-meta"><b><time datetime={date.toISOString()}>{formatDate(date)}</time></b> &nbsp;/&nbsp; {readTime}</div>
+    </div>
+  </article>
+)}

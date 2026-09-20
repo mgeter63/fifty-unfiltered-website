@@ -41,41 +41,35 @@ const schema = {
   schema={schema}
 >
   <article>
-    <div class="post-hero">
-      <div class="post-hero-inner">
-        <div class="post-cat-back">
-          <a class="bcat" href={`/blog#${slugify(category)}`}>{category}</a>
-          <a class="back-btn" href="/blog">&#8592; Back to the Blog</a>
+    <div class="post-top wrap">
+      <div class="crumbs" data-reveal>
+        <a class="tag" href={`/blog#${slugify(category)}`}>{category}</a>
+        <a class="back" href="/blog">&#8592; Back to the Blog</a>
+      </div>
+      <h1 class="post-title" data-reveal>{title}</h1>
+      <div class="byline" data-reveal data-delay="1">
+        <img src="/images/img01.jpg" alt="" />
+        <div>
+          <b>{SITE.author}</b>
+          <span><time datetime={date.toISOString()}>{formatDate(date)}</time> &nbsp;/&nbsp; {readTime}</span>
         </div>
-        {coverImage ? (
-          <div class="post-hero-img"><img src={coverImage} alt={coverAlt ?? ''} /></div>
-        ) : (
-          <div class="post-hero-img-ph ph-lav" aria-hidden="true"></div>
-        )}
       </div>
     </div>
-    <div class="post-body-wrap">
-      <div class="post-body-inner">
-        <h1 class="post-title">{title}</h1>
-        <div class="post-byline">
-          <div class="post-av" style="overflow:hidden;padding:0;"><img src="/images/img01.jpg" alt="Mary Geter" style="width:100%;height:100%;object-fit:cover;object-position:center top;" /></div>
-          <div>
-            <div class="post-by-name">{SITE.author}</div>
-            <div class="post-by-meta"><time datetime={date.toISOString()}>{formatDate(date)}</time> &middot; {category} &middot; {readTime}</div>
-          </div>
-        </div>
-        <div class="post-content">
-          <Content />
-        </div>
-        <div class="post-share">
-          <span>Share this post:</span>
-          <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener">Facebook</a>
-          <a href={`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(absoluteUrl(image))}&description=${encodeURIComponent(title)}`} target="_blank" rel="noopener">Pinterest</a>
-          <a href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`}>Email</a>
-        </div>
-        <p class="post-back"><a class="btn-ghost" href="/blog">&#8592; Back to the Blog</a></p>
+    {coverImage && (
+      <div class="post-cover" data-reveal>
+        <img src={coverImage} alt={coverAlt ?? ''} fetchpriority="high" />
       </div>
+    )}
+    <div class="prose" style="padding-left:var(--gutter);padding-right:var(--gutter);">
+      <Content />
+      <div class="share">
+        <span>Share this post</span>
+        <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener">Facebook</a>
+        <a href={`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(absoluteUrl(image))}&description=${encodeURIComponent(title)}`} target="_blank" rel="noopener">Pinterest</a>
+        <a href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`}>Email</a>
+      </div>
+      <p style="margin-top:2rem;"><a class="btn btn-outline" href="/blog">&#8592; Back to the Blog</a></p>
     </div>
   </article>
-  <Newsletter eyebrow="Enjoyed this?" heading="Get the next one <em>in your inbox</em>" />
+  <Newsletter kicker="Enjoyed this?" heading="Get the next one <em>in your inbox.</em>" />
 </Base>

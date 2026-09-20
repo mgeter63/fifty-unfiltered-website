@@ -1,0 +1,51 @@
+---
+/**
+ * Full-screen hero. Uses public/video/hero.mp4 (and hero.webm) automatically when those
+ * files exist; otherwise the still photo. The photo is public/images/hero.jpg if present,
+ * else the default portrait. Nothing to edit here to swap media.
+ */
+import fs from 'node:fs';
+
+interface Props {
+  headline: string[];   // one array item per line
+  sub: string;
+  cta: { label: string; href: string };
+}
+const { headline, sub, cta } = Astro.props;
+
+const has = (p: string) => fs.existsSync(new URL(`../../public${p}`, import.meta.url));
+const poster = has('/images/hero.jpg') ? '/images/hero.jpg' : '/images/img06.jpg';
+const mp4 = has('/video/hero.mp4') ? '/video/hero.mp4' : null;
+const webm = has('/video/hero.webm') ? '/video/hero.webm' : null;
+---
+
+<section class="hero" aria-label="Welcome">
+  <div class="hero-media" aria-hidden="true">
+    <img src={poster} alt="" fetchpriority="high" decoding="async" />
+    {(mp4 || webm) && (
+      <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster={poster}>
+        {webm && <source src={webm} type="video/webm" />}
+        {mp4 && <source src={mp4} type="video/mp4" />}
+      </video>
+    )}
+  </div>
+  <div class="hero-inner">
+    <h1 data-reveal>
+      {headline.map((line, i) => (
+        <>{line}{i < headline.length - 1 && <> <br /></>}</>
+      ))}
+    </h1>
+    <p class="hero-sub" data-reveal data-delay="1">{sub}</p>
+    <p data-reveal data-delay="2"><a class="btn btn-fuchsia btn-lg" href={cta.href}>{cta.label}</a></p>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">Scroll</div>
+</section>
+
+<script>
+  // Honour reduced-motion: never start the background video for those visitors.
+  const v = document.getElementById('hero-video') as HTMLVideoElement | null;
+  if (v && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    v.pause();
+    v.removeAttribute('autoplay');
+  }
+</script>

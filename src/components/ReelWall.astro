@@ -1,0 +1,64 @@
+---
+/** Horizontal row of vertical shorts. Edit content/reels.json to add one. */
+import reels from '../../content/reels.json';
+
+type Reel = { title: string; poster: string; video?: string; link?: string };
+const items = (reels as Reel[]).filter((r) => r && r.poster);
+---
+
+{items.length > 0 && (
+  <section class="section bg-2" id="watch" aria-labelledby="watch-h">
+    <div class="wrap">
+      <div class="head-row" data-reveal>
+        <div>
+          <div class="kicker">Watch</div>
+          <h2 class="sh" id="watch-h">Short. Loud. <em>True.</em></h2>
+        </div>
+        <a class="btn btn-outline" href="https://www.instagram.com/fiftyunfiltered" target="_blank" rel="noopener">More on Instagram</a>
+      </div>
+      <div class="reels" id="reels" data-reveal data-delay="1">
+        {items.map((r, i) => (
+          r.video ? (
+            <button class="reel" type="button" data-video={r.video} aria-label={`Play: ${r.title}`}>
+              <img src={r.poster} alt="" loading="lazy" decoding="async" />
+              <video preload="none" playsinline loop poster={r.poster} muted={false} aria-hidden="true"><source src={r.video} type="video/mp4" /></video>
+              <span class="reel-play" aria-hidden="true"><span>&#9654;</span></span>
+              <span class="reel-title">{r.title}</span>
+            </button>
+          ) : (
+            <a class="reel" href={r.link || '#'} target="_blank" rel="noopener" aria-label={`Watch: ${r.title}`}>
+              <img src={r.poster} alt="" loading="lazy" decoding="async" />
+              <span class="reel-play" aria-hidden="true"><span>&#9654;</span></span>
+              <span class="reel-title">{r.title}</span>
+            </a>
+          )
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<script>
+  // Tap to play one reel at a time, with sound. Tap again to pause.
+  const reels = Array.from(document.querySelectorAll<HTMLButtonElement>('.reel[data-video]'));
+  const stopAll = (except?: HTMLElement) => {
+    reels.forEach((r) => {
+      if (r === except) return;
+      const v = r.querySelector('video');
+      if (v) { v.pause(); v.currentTime = 0; }
+      r.classList.remove('playing');
+    });
+  };
+  reels.forEach((r) => {
+    const v = r.querySelector('video');
+    if (!v) return;
+    r.addEventListener('click', () => {
+      if (r.classList.contains('playing')) { v.pause(); r.classList.remove('playing'); return; }
+      stopAll(r);
+      v.muted = false;
+      v.play().then(() => r.classList.add('playing')).catch(() => { v.muted = true; v.play(); r.classList.add('playing'); });
+    });
+    v.addEventListener('ended', () => r.classList.remove('playing'));
+  });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) stopAll(); });
+</script>

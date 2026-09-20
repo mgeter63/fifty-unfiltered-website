@@ -1,111 +1,87 @@
 ---
 import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ReelWall from '../components/ReelWall.astro';
+import QuoteSlider from '../components/QuoteSlider.astro';
 import PostCard from '../components/PostCard.astro';
 import Newsletter from '../components/Newsletter.astro';
-import { getPosts, postUrl, SITE } from '../lib/posts';
+import { getPosts, SITE } from '../lib/posts';
 
 const posts = await getPosts();
-const latest = posts[0];
-const homePosts = posts.slice(0, 3);
+const [newest, ...rest] = posts;
+const more = rest.slice(0, 3);
+
+const topics = [
+  ['Relationships', 'Dating after divorce, intimacy, boundaries, and what love looks like with wisdom behind it.', '/blog#relationships'],
+  ['Grown Folks Business', 'Money, work, starting over, and the decisions nobody else gets a vote on.', '/blog#grown-folks-business'],
+  ['The Body Still Works', 'Menopause, hormones, hair, health, and making peace with the body you have now.', '/blog#the-body-still-works'],
+  ["I Don't Do That Anymore", 'The habits, people, and obligations that got deleted along with the apology.', '/blog#i-dont-do-that-anymore'],
+  ['The Ones Behind Us', 'Adult children, aging parents, and the generation watching how we do this.', '/blog#the-ones-behind-us'],
+  ['New World Problems', 'Technology, culture, and a world that changed the rules while we were busy.', '/blog#new-world-problems'],
+];
 ---
 
 <Base
-  title="Fifty and Unfiltered | Real Talk for Black Women Over 50"
+  title="Fifty and Unfiltered | Grown Woman Conversations for Black Women Over 50"
   description={SITE.description}
+  fullBleed
 >
-  <section class="hero" style="position:relative;">
-    <div style="position:absolute;inset:0;background-image:url('/images/img00.jpg');background-size:cover;background-position:center 30%;opacity:0.07;z-index:0;pointer-events:none;"></div>
-    <div class="hero-left">
-      <div class="hero-tag"><span class="tag-dot"></span>Real Talk for Black Women Over 50</div>
-      <h1>Your Next<br />Chapter Is<br /><em>Your</em> <span class="hw">Best</span> One</h1>
-      <p class="hero-desc">No sugarcoating. No pretending. Just the honest conversations we should have been having all along. Welcome to the space that was built for you.</p>
-      <div class="hero-qpill"><span class="qmark">&ldquo;</span><div><p>Be unapologetically you. Your truth is your light.</p><cite>Mary Geter &mdash; Founder</cite></div></div>
-      <div class="hero-btns"><a class="btn-lav" href="/blog">Read the Blog</a><a class="btn-ghost" href="#join">Join the Community</a></div>
-    </div>
-    <div class="hero-right">
-      {latest && (
-        <div style="background:#fff;border-radius:24px;border:1.5px solid var(--lilac);box-shadow:0 16px 60px rgba(139,111,181,.22);overflow:hidden;width:100%;border-top:5px solid var(--lav);">
-          <div style="padding:1.75rem 2rem 2rem;">
-            <span style="display:inline-block;background:var(--lav-pale);color:var(--lav-mid);font-size:0.72rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:0.35rem 0.9rem;border-radius:100px;margin-bottom:1rem;">Latest Post</span>
-            <a href={postUrl(latest)} style="display:block;font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;color:var(--plum);margin-bottom:0.85rem;line-height:1.2;">{latest.data.title}</a>
-            <p style="font-size:0.95rem;color:var(--text-s);line-height:1.7;margin-bottom:1.5rem;">{latest.data.excerpt}</p>
-            <div style="display:flex;align-items:center;gap:1rem;">
-              <div style="width:80px;height:80px;border-radius:50%;border:3px solid var(--lav);overflow:hidden;flex-shrink:0;">
-                <img src="/images/img01.jpg" alt="Mary Geter" style="width:100%;height:100%;object-fit:cover;object-position:top center;" />
-              </div>
-              <div>
-                <div style="font-size:1.05rem;font-weight:600;color:var(--plum);">Mary Geter</div>
-                <div style="font-size:0.85rem;color:var(--text-s);">Founder &bull; Fifty and Unfiltered</div>
-              </div>
-            </div>
-          </div>
+  <Hero
+    headline={["I'm 60.", 'Nobody warned me', 'about any of this.']}
+    sub="Grown woman conversations. No filter, no apology."
+    cta={{ label: 'Start Here', href: '/blog' }}
+  />
+
+  <ReelWall />
+
+  <section class="section" aria-labelledby="latest-h">
+    <div class="wrap">
+      <div class="head-row" data-reveal>
+        <div>
+          <div class="kicker">Read</div>
+          <h2 class="sh" id="latest-h">Latest from <em>the Blog</em></h2>
         </div>
-      )}
+        <a class="btn btn-outline" href="/blog">All Posts</a>
+      </div>
+      {newest && <PostCard post={newest} variant="feature" headingLevel="h3" />}
+      <div class="grid">
+        {more.map((post, i) => <PostCard post={post} delay={i + 1} />)}
+      </div>
     </div>
   </section>
 
-  <section class="topics-section"><div class="si">
-    <div class="eyebrow">The Real Conversations</div>
-    <h2 class="sh2">What We Talk About <em>Here</em></h2>
-    <p class="ssub">Life after 50 is not the beginning of the end. It is the beginning of everything you actually want. We cover every part of it.</p>
-    <div class="tgrid">
-      <a class="tcard" href="/blog#relationships"><span class="tcard-ico">&#10084;&#65039;</span><h3>Love &amp; Relationships</h3><p>Dating after divorce, navigating intimacy, setting boundaries, and what love really looks like with wisdom behind it.</p><span class="tpill">Relationships</span></a>
-      <a class="tcard" href="/blog#mental-health"><span class="tcard-ico">&#129504;</span><h3>Mental &amp; Emotional Health</h3><p>Anxiety, depression, grief, therapy, and the emotional labor Black women carry that nobody talks about enough.</p><span class="tpill">Mental Health</span></a>
-      <a class="tcard" href="/blog#health-and-body"><span class="tcard-ico">&#127774;</span><h3>Health &amp; Body</h3><p>Menopause, hormones, chronic illness, and making peace with your body on your own terms.</p><span class="tpill">Health</span></a>
-      <a class="tcard" href="/blog#money"><span class="tcard-ico">&#128176;</span><h3>Money &amp; Independence</h3><p>Retirement, financial freedom, starting over, and building wealth when the world said it was too late.</p><span class="tpill">Money</span></a>
-      <a class="tcard" href="/blog#family"><span class="tcard-ico">&#127968;</span><h3>Family Dynamics</h3><p>Adult children, aging parents, divorce, and protecting your peace through every season of it.</p><span class="tpill">Family</span></a>
-      <a class="tcard" href="/blog#identity"><span class="tcard-ico">&#10024;</span><h3>Identity &amp; Self-Worth</h3><p>Who are you when the roles fall away? Rediscovering yourself and your power at 50 and beyond.</p><span class="tpill">Identity</span></a>
-    </div>
-  </div></section>
+  <QuoteSlider />
 
-  <section style="background:var(--plum);padding:4rem 2rem;">
-    <div style="max-width:1100px;margin:0 auto;">
-      <div style="text-align:center;margin-bottom:2.5rem;">
-        <div class="eyebrow" style="justify-content:center;color:var(--honey-lt);">Words That Hit Different</div>
-        <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:#fff;font-weight:600;">Truths for the Woman <em style="font-style:italic;color:var(--lav-soft);">Who Is Done Waiting</em></h2>
+  <section class="section" aria-labelledby="topics-h">
+    <div class="wrap">
+      <div class="center" data-reveal>
+        <div class="kicker">The Conversations</div>
+        <h2 class="sh" id="topics-h">What We Talk <em>About Here</em></h2>
+        <p class="lead">Life after 50 is not the beginning of the end. It is the part where you finally get a say. We cover all of it.</p>
       </div>
-      <div class="quotes-inner-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;">
-        {[
-          ['You spent forty years being everything to everyone. The next chapter belongs to you.', 'Mary Geter'],
-          ['Fifty is not the beginning of the end. It is the beginning of everything you actually want.', 'Fifty & Unfiltered'],
-          ['Your standards should be higher at 50 than they were at 30. You know better now. Act like it.', 'Mary Geter'],
-        ].map(([q, who]) => (
-          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:2rem 1.75rem;">
-            <div style="font-family:'Cormorant Garamond',serif;font-size:3rem;line-height:0.8;color:var(--honey);margin-bottom:1rem;">&ldquo;</div>
-            <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:rgba(255,255,255,.85);line-height:1.6;margin-bottom:1rem;">{q}</p>
-            <span style="font-size:0.68rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--honey);">{who}</span>
+      <div class="topics" style="margin-top:2.5rem;" data-reveal data-delay="1">
+        {topics.map(([name, blurb, href], i) => (
+          <div class="topic">
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <h3><a href={href}>{name}</a></h3>
+            <p>{blurb}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <section class="blog-section"><div class="si">
-    <div class="eyebrow">Fresh Off the Page</div>
-    <h2 class="sh2">Latest from the <em>Blog</em></h2>
-    <p class="ssub">Real stories, honest perspectives, and conversations that matter for women navigating life after 50.</p>
-    <div class="bgrid-home">
-      {homePosts.map((post, i) => <PostCard post={post} variant="home" featured={i === 0} />)}
-    </div>
-    <div style="text-align:center;margin-top:2.5rem;"><a class="btn-lav" href="/blog">See All Posts</a></div>
-  </div></section>
-
-  <section class="about-strip" style="position:relative;overflow:hidden;">
-    <div style="position:absolute;inset:0;background-image:url('/images/img05.jpg');background-size:cover;background-position:center 25%;opacity:0.1;z-index:0;pointer-events:none;"></div>
-    <div style="max-width:1100px;margin:0 auto;padding:5rem 2rem;position:relative;z-index:1;">
-      <div class="about-strip-inner" style="display:grid;grid-template-columns:380px 1fr;gap:4rem;align-items:start;">
-        <div style="border-radius:28px;width:380px;height:500px;overflow:hidden;border:1px solid var(--lilac);flex-shrink:0;">
-          <img src="/images/img06.jpg" alt="Mary Geter standing confidently, founder of Fifty and Unfiltered" style="width:100%;height:100%;object-fit:cover;object-position:center 15%;" />
-        </div>
-        <div>
-          <div class="eyebrow">Meet Mary</div>
-          <h2 class="sh2" style="font-size:clamp(2.2rem,4vw,3.2rem);">The Unapologetic Voice <em>Behind This Space</em></h2>
-          <p style="font-size:1.05rem;color:var(--text-s);line-height:1.85;margin-bottom:1rem;">As a proud African American woman and entrepreneur, I have navigated spaces that were not built for women like us. Those experiences did not break me. They built this.</p>
-          <div style="background:#fff;border-left:3px solid var(--honey);border-radius:0 14px 14px 0;padding:1.25rem 1.5rem;margin:1.5rem 0;">
-            <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.2rem;color:var(--lav-deep);line-height:1.5;margin:0;">"I created the space I needed and could not find. A place where brown-skinned women over 50 can be real, be seen, and be celebrated exactly as they are."</p>
-          </div>
-          <a class="btn-lav" href="/about" style="margin-top:1.5rem;">My Full Story &rarr;</a>
-        </div>
+  <section class="section bg-2" aria-labelledby="mary-h">
+    <div class="wrap mary">
+      <div class="mary-photo" data-reveal>
+        <img src="/images/img13.jpg" alt="Mary Geter, founder of Fifty and Unfiltered, pointing at her Black and Legendary shirt" loading="lazy" decoding="async" />
+      </div>
+      <div data-reveal data-delay="1">
+        <div class="kicker">Meet Mary</div>
+        <h2 class="sh" id="mary-h">The Voice <em>Behind This</em></h2>
+        <p class="lead">I am a 60 year old Black woman, an entrepreneur, and the woman who got tired of having the honest conversation alone in her head. So I started saying it out loud.</p>
+        <div class="pull">I created the space I needed and could not find. A place where brown-skinned women over 50 can be real, be seen, and be celebrated exactly as they are.</div>
+        <a class="btn btn-fuchsia" href="/about">My Full Story &rarr;</a>
       </div>
     </div>
   </section>
