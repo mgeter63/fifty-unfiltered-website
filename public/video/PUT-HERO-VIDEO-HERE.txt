@@ -1,2 +1,0 @@
-Upload the hero video to this folder as hero.mp4 (and optionally hero.webm).
-Nothing else to change. See content/REELS-AND-QUOTES.md.

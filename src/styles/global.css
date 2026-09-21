@@ -90,8 +90,9 @@ button{cursor:pointer;border:none;outline:none;font-family:inherit;background:no
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:var(--bg-2);}
 .hero-media{position:absolute;inset:0;}
-.hero-media img,.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--hero-pos,70% 22%);}
-@media(min-width:900px){.hero-media img{width:125%;object-position:50% 12%;}}
+.hero-media img,.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--hero-pos,66% 20%);}
+/* --hero-pos aims the crop window. Mary's face is right of center in the clip (about 63% across, top third),
+   so 66% keeps her in frame on a phone, where only the middle quarter of the 16:9 video is visible. */
 .hero-media video{z-index:1;}
 .hero-media::after{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(26,26,26,.3) 0%,rgba(26,26,26,.45) 40%,rgba(26,26,26,.93) 100%),linear-gradient(90deg,rgba(26,26,26,.55) 0%,rgba(26,26,26,0) 60%);}
 .hero-inner{position:relative;z-index:3;width:100%;max-width:var(--max);margin:0 auto;padding:calc(var(--nav-h) + 3rem) var(--gutter) clamp(2.5rem,7vw,4.5rem);}
