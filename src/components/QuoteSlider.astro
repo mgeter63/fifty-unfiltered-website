@@ -1,0 +1,50 @@
+---
+/** One line at a time, rotating. Edit content/quotes.json to change the lines. */
+import quotes from '../../content/quotes.json';
+const lines = (quotes as string[]).map((q) => q.trim()).filter(Boolean);
+---
+
+{lines.length > 0 && (
+  <section class="quotes" id="quotes" aria-roledescription="carousel" aria-label="Words from Mary">
+    <div class="quotes-stage" aria-live="polite">
+      {lines.map((q, i) => (
+        <blockquote class:list={['quote', { 'is-active': i === 0 }]} data-i={i} aria-hidden={i !== 0}>
+          {q}
+          <cite class="quote-by">Mary Geter</cite>
+        </blockquote>
+      ))}
+    </div>
+    {lines.length > 1 && (
+      <div class="quotes-ctrl">
+        <button type="button" id="q-prev" aria-label="Previous quote">&#8249;</button>
+        <div class="quotes-dots" id="q-dots" role="tablist">
+          {lines.map((_, i) => <button type="button" role="tab" aria-label={`Quote ${i + 1}`} aria-current={i === 0 ? 'true' : 'false'} data-i={i}></button>)}
+        </div>
+        <button type="button" id="q-next" aria-label="Next quote">&#8250;</button>
+      </div>
+    )}
+  </section>
+)}
+
+<script>
+  const slides = Array.from(document.querySelectorAll<HTMLElement>('.quote'));
+  const dots = Array.from(document.querySelectorAll<HTMLButtonElement>('#q-dots button'));
+  if (slides.length > 1) {
+    const INTERVAL = 6000;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let i = 0;
+    let timer: number | undefined;
+    const show = (n: number) => {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.classList.toggle('is-active', k === i); s.setAttribute('aria-hidden', String(k !== i)); });
+      dots.forEach((d, k) => d.setAttribute('aria-current', String(k === i)));
+    };
+    const start = () => { if (!reduce) timer = window.setInterval(() => show(i + 1), INTERVAL); };
+    const restart = () => { if (timer) clearInterval(timer); start(); };
+    document.getElementById('q-prev')?.addEventListener('click', () => { show(i - 1); restart(); });
+    document.getElementById('q-next')?.addEventListener('click', () => { show(i + 1); restart(); });
+    dots.forEach((d) => d.addEventListener('click', () => { show(Number(d.dataset.i)); restart(); }));
+    document.addEventListener('visibilitychange', () => { if (document.hidden) { if (timer) clearInterval(timer); timer = undefined; } else restart(); });
+    start();
+  }
+</script>

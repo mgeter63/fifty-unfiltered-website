@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import ReelWall from '../components/ReelWall.astro';
+import QuoteSlider from '../components/QuoteSlider.astro';
+import PostCard from '../components/PostCard.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { getPosts, SITE } from '../lib/posts';
+
+const posts = await getPosts();
+const [newest, ...rest] = posts;
+const more = rest.slice(0, 3);
+
+const topics = [
+  ['Relationships', 'Dating after divorce, intimacy, boundaries, and what love looks like with wisdom behind it.', '/blog#relationships'],
+  ['Grown Folks Business', 'Money, work, starting over, and the decisions nobody else gets a vote on.', '/blog#grown-folks-business'],
+  ['The Body Still Works', 'Menopause, hormones, hair, health, and making peace with the body you have now.', '/blog#the-body-still-works'],
+  ["I Don't Do That Anymore", 'The habits, people, and obligations that got deleted along with the apology.', '/blog#i-dont-do-that-anymore'],
+  ['The Ones Behind Us', 'Adult children, aging parents, and the generation watching how we do this.', '/blog#the-ones-behind-us'],
+  ['New World Problems', 'Technology, culture, and a world that changed the rules while we were busy.', '/blog#new-world-problems'],
+];
+---
+
+<Base
+  title="Fifty and Unfiltered | Grown Woman Conversations for Black Women Over 50"
+  description={SITE.description}
+  fullBleed
+>
+  <Hero
+    headline={["I'm 60.", 'Nobody warned me', 'about any of this.']}
+    sub="Grown woman conversations. No filter, no apology."
+    cta={{ label: 'Start Here', href: '/blog' }}
+  />
+
+  <ReelWall />
+
+  <section class="section" aria-labelledby="latest-h">
+    <div class="wrap">
+      <div class="head-row" data-reveal>
+        <div>
+          <div class="kicker">Read</div>
+          <h2 class="sh" id="latest-h">Latest from <em>the Blog</em></h2>
+        </div>
+        <a class="btn btn-outline" href="/blog">All Posts</a>
+      </div>
+      {newest && <PostCard post={newest} variant="feature" headingLevel="h3" />}
+      <div class="grid">
+        {more.map((post, i) => <PostCard post={post} delay={i + 1} />)}
+      </div>
+    </div>
+  </section>
+
+  <QuoteSlider />
+
+  <section class="section" aria-labelledby="topics-h">
+    <div class="wrap">
+      <div class="center" data-reveal>
+        <div class="kicker">The Conversations</div>
+        <h2 class="sh" id="topics-h">What We Talk <em>About Here</em></h2>
+        <p class="lead">Life after 50 is not the beginning of the end. It is the part where you finally get a say. We cover all of it.</p>
+      </div>
+      <div class="topics" style="margin-top:2.5rem;" data-reveal data-delay="1">
+        {topics.map(([name, blurb, href], i) => (
+          <div class="topic">
+            <span class="num">{String(i + 1).padStart(2, '0')}</span>
+            <h3><a href={href}>{name}</a></h3>
+            <p>{blurb}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-2" aria-labelledby="mary-h">
+    <div class="wrap mary">
+      <div class="mary-photo" data-reveal>
+        <img src="/images/img13.jpg" alt="Mary Geter, founder of Fifty and Unfiltered, pointing at her Black and Legendary shirt" loading="lazy" decoding="async" />
+      </div>
+      <div data-reveal data-delay="1">
+        <div class="kicker">Meet Mary</div>
+        <h2 class="sh" id="mary-h">The Voice <em>Behind This</em></h2>
+        <p class="lead">I am a 60 year old Black woman, an entrepreneur, and the woman who got tired of having the honest conversation alone in her head. So I started saying it out loud.</p>
+        <div class="pull">I created the space I needed and could not find. A place where brown-skinned women over 50 can be real, be seen, and be celebrated exactly as they are.</div>
+        <a class="btn btn-fuchsia" href="/about">My Full Story &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+</Base>

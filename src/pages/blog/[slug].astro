@@ -1,0 +1,75 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { getPosts, formatDate, SITE, absoluteUrl, slugify } from '../../lib/posts';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post) => ({ params: { slug: post.data.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, category, date, readTime, metaDescription, coverImage, coverAlt } = post.data;
+const image = coverImage ?? SITE.defaultImage;
+const url = absoluteUrl(`/blog/${post.data.slug}`);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: metaDescription,
+  image: absoluteUrl(image),
+  datePublished: date.toISOString(),
+  dateModified: date.toISOString(),
+  author: { '@type': 'Person', name: SITE.author, url: `${SITE.url}/about` },
+  publisher: { '@type': 'Organization', name: SITE.name, url: SITE.url },
+  mainEntityOfPage: url,
+  articleSection: category,
+  url,
+};
+---
+
+<Base
+  title={`${title} | Fifty and Unfiltered`}
+  description={metaDescription}
+  image={image}
+  imageAlt={coverAlt ?? title}
+  type="article"
+  publishedTime={date.toISOString()}
+  schema={schema}
+>
+  <article>
+    <div class="post-top wrap">
+      <div class="crumbs" data-reveal>
+        <a class="tag" href={`/blog#${slugify(category)}`}>{category}</a>
+        <a class="back" href="/blog">&#8592; Back to the Blog</a>
+      </div>
+      <h1 class="post-title" data-reveal>{title}</h1>
+      <div class="byline" data-reveal data-delay="1">
+        <img src="/images/img01.jpg" alt="" />
+        <div>
+          <b>{SITE.author}</b>
+          <span><time datetime={date.toISOString()}>{formatDate(date)}</time> &nbsp;/&nbsp; {readTime}</span>
+        </div>
+      </div>
+    </div>
+    {coverImage && (
+      <div class="post-cover" data-reveal>
+        <img src={coverImage} alt={coverAlt ?? ''} fetchpriority="high" />
+      </div>
+    )}
+    <div class="prose" style="padding-left:var(--gutter);padding-right:var(--gutter);">
+      <Content />
+      <div class="share">
+        <span>Share this post</span>
+        <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`} target="_blank" rel="noopener">Facebook</a>
+        <a href={`https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&media=${encodeURIComponent(absoluteUrl(image))}&description=${encodeURIComponent(title)}`} target="_blank" rel="noopener">Pinterest</a>
+        <a href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`}>Email</a>
+      </div>
+      <p style="margin-top:2rem;"><a class="btn btn-outline" href="/blog">&#8592; Back to the Blog</a></p>
+    </div>
+  </article>
+  <Newsletter kicker="Enjoyed this?" heading="Get the next one <em>in your inbox.</em>" />
+</Base>

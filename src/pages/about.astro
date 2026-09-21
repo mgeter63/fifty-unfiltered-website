@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+import Newsletter from '../components/Newsletter.astro';
+import { SITE } from '../lib/posts';
+---
+
+<Base
+  title="About Mary Geter | Fifty and Unfiltered"
+  description="Meet Mary Geter, the entrepreneur, content creator, and unapologetic voice behind Fifty and Unfiltered, a space built for Black women over 50."
+  image="/images/img13.jpg"
+  imageAlt="Mary Geter, founder of Fifty and Unfiltered"
+  schema={{
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: SITE.author,
+    url: `${SITE.url}/about`,
+    jobTitle: 'Founder, Fifty and Unfiltered',
+    sameAs: ['https://www.instagram.com/keepupwithmg', 'https://www.instagram.com/fiftyunfiltered'],
+  }}
+>
+  <div class="about-hero">
+    <div data-reveal>
+      <div class="kicker">The Woman Behind the Work</div>
+      <h1>Hey There.<br />I'm <span>Mary.</span></h1>
+      <p>I am a 60 year old African American entrepreneur, content creator, and the woman who got tired of having quiet conversations alone in her head and decided to say them out loud instead.</p>
+      <div class="pull">My journey through the isolating experience of being a single, brown-skinned woman navigating predominantly white spaces, while entering my 50s, inspired me to create Fifty and Unfiltered.</div>
+      <p>With a background in civil rights compliance, contract compliance, and public administration spanning more than 18 years, I spent my career advocating for others. Now I am advocating for us.</p>
+    </div>
+    <div class="about-photo" data-reveal data-delay="1">
+      <img src="/images/img13.jpg" alt="Mary Geter, founder of Fifty and Unfiltered, pointing to her Black and Legendary shirt with joy" />
+    </div>
+  </div>
+
+  <section class="section mission">
+    <div class="wrap center" data-reveal>
+      <div class="kicker">Our Purpose</div>
+      <h2 class="sh">The Mission Behind <em>Fifty and Unfiltered</em></h2>
+      <p class="lead">Fifty and Unfiltered exists because Black women over 50 deserve a space that reflects our real lives. Not the sanitized version. The actual truth of what it means to navigate love, loss, health, money, and identity when the world expects us to be invisible.</p>
+      <p class="lead">Here, we are not invisible. We are the whole conversation. We hold each other up and refuse to let anyone rush us through this chapter.</p>
+      <blockquote class="mission-quote">Your story and your strength matter. And I want to hear it.<cite>Mary Geter</cite></blockquote>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap two">
+      <div data-reveal>
+        <div class="kicker">Background</div>
+        <h2 class="sh">More Than <em>a Blog</em></h2>
+        <p>Mary holds a Master of Science in Counseling Education from Mississippi State University and a Bachelor of Science in Business Administration from Mississippi University for Women.</p>
+        <p>With more than 35 years in business management, contract compliance, civil rights, and public administration, Mary has built a career advocating for others in spaces that were not always built for women like her. Fifty and Unfiltered is her independent creative space: personal commentary, honest stories, and a community of women who are done being quiet.</p>
+        <a class="btn btn-fuchsia" href="/blog" style="margin-top:.5rem;">Read the Blog &rarr;</a>
+      </div>
+      <div class="panel" data-reveal data-delay="1">
+        <h2>Connect With <em>Mary</em></h2>
+        <div class="row"><span class="k">Email</span><span><a href={`mailto:${SITE.email}`}>{SITE.email}</a></span></div>
+        <div class="row"><span class="k">Phone</span><span>769.300.1156</span></div>
+        <div class="row"><span class="k">Mail</span><span>P.O. Box 13146, Jackson, MS 39236</span></div>
+        <div class="row"><span class="k">Based In</span><span>Mississippi, United States</span></div>
+        <div class="chips">
+          <a class="chip" href="https://www.instagram.com/keepupwithmg" target="_blank" rel="noopener">@keepupwithmg</a>
+          <a class="chip" href="https://www.instagram.com/fiftyunfiltered" target="_blank" rel="noopener">@fiftyunfiltered</a>
+          <a class="chip" href="https://www.facebook.com" target="_blank" rel="noopener">Facebook</a>
+          <a class="chip" href="https://www.pinterest.com" target="_blank" rel="noopener">Pinterest</a>
+        </div>
+        <a class="btn btn-outline" href="/contact">Send a Message</a>
+      </div>
+    </div>
+  </section>
+
+  <Newsletter />
+</Base>

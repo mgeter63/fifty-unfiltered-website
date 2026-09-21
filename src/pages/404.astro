@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import { getPosts, postUrl } from '../lib/posts';
+const recent = (await getPosts()).slice(0, 3);
+---
+
+<Base title="Page Not Found | Fifty and Unfiltered" description="That page has moved or no longer exists." noindex>
+  <div class="legal center">
+    <div class="kicker">Well, That's Awkward</div>
+    <h1>That page <span>moved on.</span></h1>
+    <p>The site was rebuilt, and some old addresses from the previous version no longer exist. What you are looking for is probably one of these:</p>
+    <p style="margin:1.5rem 0 2.5rem;display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap;"><a class="btn btn-fuchsia" href="/blog">Go to the Blog</a><a class="btn btn-outline" href="/">Home</a></p>
+    <h2>Recent posts</h2>
+    <ul style="list-style:none;margin:0;">
+      {recent.map((p) => <li><a href={postUrl(p)}>{p.data.title}</a></li>)}
+    </ul>
+  </div>
+</Base>

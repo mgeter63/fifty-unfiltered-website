@@ -1,0 +1,33 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/posts';
+---
+
+<Base
+  title="Disclaimer | Fifty and Unfiltered"
+  description="Fifty and Unfiltered publishes personal commentary and does not provide counseling, medical, legal, or financial services."
+>
+  <div class="legal">
+    <div class="kicker">Please Read</div>
+    <h1>Dis<span>claimer</span></h1>
+    <p class="legal-updated">Last updated: September 20, 2026</p>
+
+    <p><strong>Fifty and Unfiltered publishes personal commentary.</strong> Everything on this website, in the newsletter, and on the podcast reflects the personal opinions, experiences, and reflections of Mary Geter. It is shared for information, encouragement, and conversation only.</p>
+
+    <h2>This site does not provide professional services</h2>
+    <p>Nothing on this site is, or should be treated as, counseling, therapy, mental health treatment, medical advice, legal advice, or financial advice. Mary Geter's academic background in counseling education does not create a counselor and client relationship with any reader, and reading this site does not make you a client, patient, or customer of any professional service.</p>
+    <p>Always seek the advice of a licensed physician, therapist, attorney, financial advisor, or other qualified professional with any questions you have about your health, your mental health, your legal situation, or your money. Never disregard professional advice or delay seeking it because of something you read here.</p>
+
+    <h2>If you are in crisis</h2>
+    <p>If you are thinking about harming yourself or are in immediate danger, please call or text 988 (the Suicide and Crisis Lifeline in the United States) or call 911. This website cannot respond to emergencies.</p>
+
+    <h2>Accuracy and links</h2>
+    <p>Content is offered as is. Facts and statistics are shared in good faith but may become outdated. Links to other websites are provided for convenience; Fifty and Unfiltered does not control those sites and is not responsible for their content.</p>
+
+    <h2>Independence</h2>
+    <p>Fifty and Unfiltered is an independent creative project owned by Mary Geter. It is not affiliated with, sponsored by, or a program of any nonprofit organization.</p>
+
+    <h2>Questions</h2>
+    <p>Write to <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.</p>
+  </div>
+</Base>

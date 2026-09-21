@@ -1,0 +1,42 @@
+---
+import { formatDate, postUrl, slugify, type Post } from '../lib/posts';
+
+interface Props {
+  post: Post;
+  /** "feature" is the large full-width card; "grid" is the standard magazine card. */
+  variant?: 'feature' | 'grid';
+  delay?: number;
+  headingLevel?: 'h2' | 'h3';
+}
+const { post, variant = 'grid', delay = 0, headingLevel = 'h3' } = Astro.props;
+const { title, category, excerpt, date, readTime, coverImage, coverAlt } = post.data;
+const href = postUrl(post);
+const H = headingLevel;
+---
+
+{variant === 'feature' ? (
+  <article class="feature" data-cat={slugify(category)} data-reveal>
+    <div class="feature-img">
+      {coverImage && <img src={coverImage} alt={coverAlt ?? ''} loading="eager" decoding="async" />}
+    </div>
+    <div class="feature-body">
+      <div><span class="tag">{category}</span> <span class="tag tag-ghost">Newest</span></div>
+      <H><a href={href}>{title}</a></H>
+      <p>{excerpt}</p>
+      <div class="card-meta"><b><time datetime={date.toISOString()}>{formatDate(date)}</time></b> &nbsp;/&nbsp; {readTime}</div>
+      <div><span class="btn btn-gold">Read it &rarr;</span></div>
+    </div>
+  </article>
+) : (
+  <article class="card" data-cat={slugify(category)} data-reveal data-delay={delay || undefined}>
+    <div class="card-img">
+      {coverImage && <img src={coverImage} alt={coverAlt ?? ''} loading="lazy" decoding="async" />}
+    </div>
+    <div class="card-body">
+      <div><span class="tag">{category}</span></div>
+      <H><a href={href}>{title}</a></H>
+      <p>{excerpt}</p>
+      <div class="card-meta"><b><time datetime={date.toISOString()}>{formatDate(date)}</time></b> &nbsp;/&nbsp; {readTime}</div>
+    </div>
+  </article>
+)}

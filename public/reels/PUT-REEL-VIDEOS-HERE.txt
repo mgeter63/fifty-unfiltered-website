@@ -1,0 +1,2 @@
+Upload short vertical videos (MP4) and their poster images (JPG) to this folder,
+then list them in content/reels.json. See content/REELS-AND-QUOTES.md.
