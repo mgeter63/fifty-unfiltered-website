@@ -17,6 +17,10 @@ const has = (p: string) => fs.existsSync(new URL(`../../public${p}`, import.meta
 const poster = has('/images/hero.jpg') ? '/images/hero.jpg' : '/images/img06.jpg';
 const mp4 = has('/video/hero.mp4') ? '/video/hero.mp4' : null;
 const webm = has('/video/hero.webm') ? '/video/hero.webm' : null;
+
+// A headline line wrapped in **double asterisks** renders in fuchsia (the .fx class), e.g.
+// "Aging is **BS.**" — everything outside ** stays the default off-white.
+const segments = (line: string) => line.split('**').map((text, i) => ({ text, fx: i % 2 === 1 }));
 ---
 
 <section class="hero" aria-label="Welcome">
@@ -32,7 +36,10 @@ const webm = has('/video/hero.webm') ? '/video/hero.webm' : null;
   <div class="hero-inner">
     <h1 data-reveal>
       {headline.map((line, i) => (
-        <>{line}{i < headline.length - 1 && <> <br /></>}</>
+        <>
+          {segments(line).map((seg) => (seg.fx ? <span class="fx">{seg.text}</span> : seg.text))}
+          {i < headline.length - 1 && <> <br /></>}
+        </>
       ))}
     </h1>
     <p class="hero-sub" data-reveal data-delay="1">{sub}</p>
