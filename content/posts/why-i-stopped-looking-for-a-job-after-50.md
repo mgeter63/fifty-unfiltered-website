@@ -72,3 +72,5 @@ If you are reading this tired of knocking on doors that will not open, I see you
 And there is a number out there that proves I am not the only one. I will show you in my next post.
 
 Now tell me: did you stop looking for a job too? What was the real reason? Say it in the comments. Nobody is judging you here.
+
+**Keep reading:** [Starting Over Financially at 55: What Nobody Tells You](/blog/starting-over-financially-at-55-what-nobody-tells-you)
