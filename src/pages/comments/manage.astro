@@ -69,7 +69,7 @@ Astro.response.headers.set('Cache-Control', 'no-store');
 
           {comment.status !== 'deleted' && (
             <>
-              <form method="post" action="/api/comments/manage" class="form">
+              <form method="post" action="/api/comments/manage" data-manage class="form">
                 <input type="hidden" name="id" value={comment.id} />
                 <input type="hidden" name="token" value={token} />
                 <div class="ff">
@@ -81,13 +81,13 @@ Astro.response.headers.set('Cache-Control', 'no-store');
               </form>
               <div class="actions">
                 {comment.status === 'pending' && (
-                  <form method="post" action="/api/comments/manage">
+                  <form method="post" action="/api/comments/manage" data-manage>
                     <input type="hidden" name="id" value={comment.id} />
                     <input type="hidden" name="token" value={token} />
                     <button class="btn btn-gold" name="action" value="approve" type="submit">Approve without replying</button>
                   </form>
                 )}
-                <form method="post" action="/api/comments/manage" class:list={[{ 'is-focus': wantsDelete }]}>
+                <form method="post" action="/api/comments/manage" data-manage class:list={[{ 'is-focus': wantsDelete }]}>
                   <input type="hidden" name="id" value={comment.id} />
                   <input type="hidden" name="token" value={token} />
                   <button class="btn btn-outline" name="action" value="delete" type="submit">Delete this comment</button>
@@ -96,7 +96,7 @@ Astro.response.headers.set('Cache-Control', 'no-store');
             </>
           )}
           {comment.status === 'deleted' && (
-            <form method="post" action="/api/comments/manage">
+            <form method="post" action="/api/comments/manage" data-manage>
               <input type="hidden" name="id" value={comment.id} />
               <input type="hidden" name="token" value={token} />
               <button class="btn btn-gold" name="action" value="approve" type="submit">Restore and approve it</button>
@@ -108,6 +108,42 @@ Astro.response.headers.set('Cache-Control', 'no-store');
   </section>
 </Base>
 
+<script>
+  // Send each button as JSON so Astro's form-origin check never blocks it, then reload the page with the result.
+  document.querySelectorAll<HTMLFormElement>('form[data-manage]').forEach((form) => {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const submitter = (e as SubmitEvent).submitter as HTMLButtonElement | null;
+      const data = new FormData(form);
+      const payload = {
+        id: String(data.get('id') ?? ''),
+        token: String(data.get('token') ?? ''),
+        action: submitter?.value ?? '',
+        reply: String(data.get('reply') ?? ''),
+      };
+      if (payload.action === 'reply' && !payload.reply.trim()) { (form.querySelector('textarea') as HTMLTextAreaElement | null)?.focus(); return; }
+      if (payload.action === 'delete' && !confirm('Delete this comment? It will be hidden from the site.')) return;
+      document.body.classList.add('busy');
+      let done = 'error';
+      try {
+        const res = await fetch('/api/comments/manage', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const out = await res.json().catch(() => ({}));
+        done = out.done || 'error';
+      } catch {
+        done = 'error';
+      }
+      const url = new URL(location.href);
+      url.searchParams.set('done', done);
+      url.searchParams.delete('do');
+      location.replace(url.toString());
+    });
+  });
+</script>
+
 <style>
   .manage { max-width: 720px; }
   .meta { color: var(--ink-3); font-size: .95rem; margin: 1rem 0 1.25rem; }
@@ -118,5 +154,6 @@ Astro.response.headers.set('Cache-Control', 'no-store');
   .replied .k { font-family: var(--head); letter-spacing: .18em; text-transform: uppercase; font-size: .75rem; color: var(--gold); margin-bottom: .5rem; }
   .replied p { white-space: pre-wrap; color: var(--ink-2); margin-bottom: .5rem; }
   .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .busy { opacity: .6; pointer-events: none; }
   .actions .is-focus .btn { border-color: var(--fuchsia); background: var(--fuchsia); color: #fff; }
 </style>

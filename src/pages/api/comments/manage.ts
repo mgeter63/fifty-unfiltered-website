@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { readBody } from '../../../lib/api';
+import { readBody, wantsJson, json } from '../../../lib/api';
 import { getPosts, absoluteUrl } from '../../../lib/posts';
 import { AUTHOR_NAME, db, emailHtml, findComment, LIMITS, newToken, sendMail } from '../../../lib/comments';
 
@@ -8,18 +8,21 @@ export const prerender = false;
 /**
  * POST /api/comments/manage : Mary approves, deletes, or replies to a comment from the private
  * link in her notification email. The comment's own secret token is the permission check.
- * Always redirects back to the manage page with a short status.
+ * Answers with JSON (or a redirect back to the manage page for a plain form post) naming what was done.
  */
 export const POST: APIRoute = async ({ request }) => {
   const body = await readBody(request);
   const id = Number(body.id);
   const token = body.token ?? '';
+  // The manage page sends JSON (Astro blocks plain form posts when the request origin cannot be matched behind Vercel's proxy).
   const back = (done: string) =>
-    Response.redirect(new URL(`/comments/manage?id=${id}&token=${encodeURIComponent(token)}&done=${done}`, request.url), 303);
+    wantsJson(request)
+      ? json({ ok: done !== 'error' && done !== 'notfound', done }, done === 'error' ? 500 : 200)
+      : Response.redirect(new URL(`/comments/manage?id=${id}&token=${encodeURIComponent(token)}&done=${done}`, request.url), 303);
 
   try {
     const comment = await findComment(id, token);
-    if (!comment) return Response.redirect(new URL('/comments/manage?done=notfound', request.url), 303);
+    if (!comment) return back('notfound');
     const pool = await db();
 
     if (body.action === 'approve') {
