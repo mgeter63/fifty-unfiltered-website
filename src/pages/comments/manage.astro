@@ -1,0 +1,122 @@
+---
+/**
+ * Mary's private page for one comment, opened from the link in her notification email.
+ * Nothing changes until she taps a button here (email link scanners only ever open the page).
+ */
+import Base from '../../layouts/Base.astro';
+import { getPosts, formatDate } from '../../lib/posts';
+import { findComment, repliesTo, type CommentRow } from '../../lib/comments';
+
+export const prerender = false;
+
+const id = Number(Astro.url.searchParams.get('id'));
+const token = Astro.url.searchParams.get('token') ?? '';
+const done = Astro.url.searchParams.get('done') ?? '';
+const wantsDelete = Astro.url.searchParams.get('do') === 'delete';
+
+let comment: CommentRow | undefined;
+let replies: CommentRow[] = [];
+let failed = false;
+try {
+  comment = await findComment(id, token);
+  if (comment) replies = await repliesTo(comment.id);
+} catch (err) {
+  console.error('comments: manage page failed', err);
+  failed = true;
+}
+const post = comment && (await getPosts()).find((p) => p.data.slug === comment!.post_slug);
+
+const messages: Record<string, string> = {
+  approved: 'Approved. The comment now shows on the post.',
+  deleted: 'Deleted. The comment is hidden from the site.',
+  replied: 'Your reply is posted. If she asked for it, the reader has been emailed.',
+  empty: 'Your reply was empty, so nothing was posted.',
+  error: 'Something went wrong. Please try again in a moment.',
+  unknown: 'Nothing was changed.',
+};
+const statusLabel = { pending: 'Waiting for your approval', approved: 'Showing on the post', deleted: 'Deleted (hidden from the site)' };
+Astro.response.headers.set('Cache-Control', 'no-store');
+---
+
+<Base title="Manage a comment | Fifty and Unfiltered" description="Private comment tools." noindex>
+  <section class="section-tight">
+    <div class="wrap manage">
+      <div class="kicker">Comments</div>
+      {failed && <p class="toast show err">The comments database could not be reached. Please try again in a moment.</p>}
+      {!failed && !comment && (
+        <>
+          <h1 class="sh" style="font-size:clamp(1.8rem,5vw,2.8rem);">Link not found</h1>
+          <p class="note">This link is not valid. Open the newest email about the comment and tap its button again.</p>
+        </>
+      )}
+      {comment && (
+        <>
+          <h1 class="sh" style="font-size:clamp(1.8rem,5vw,2.8rem);">Comment from <em>{comment.name}</em></h1>
+          {messages[done] && <p class={`toast show ${done === 'error' || done === 'empty' ? 'err' : 'ok'}`} role="status">{messages[done]}</p>}
+          <p class="meta">
+            On <a href={`/blog/${comment.post_slug}`}>{post?.data.title ?? comment.post_slug}</a><br />
+            {formatDate(new Date(comment.created_at))} &nbsp;/&nbsp; {comment.email}<br />
+            Status: <b>{statusLabel[comment.status]}</b>
+          </p>
+          <blockquote class="the-comment">{comment.body}</blockquote>
+
+          {replies.length > 0 && (
+            <div class="replied">
+              <div class="k">Your reply</div>
+              {replies.map((r) => <p>{r.body}</p>)}
+            </div>
+          )}
+
+          {comment.status !== 'deleted' && (
+            <>
+              <form method="post" action="/api/comments/manage" class="form">
+                <input type="hidden" name="id" value={comment.id} />
+                <input type="hidden" name="token" value={token} />
+                <div class="ff">
+                  <label for="reply">Reply as Mary Geter</label>
+                  <textarea id="reply" name="reply" placeholder="Write your reply. It shows under her comment." required></textarea>
+                </div>
+                <button class="btn btn-fuchsia" name="action" value="reply" type="submit">Post my reply</button>
+                <p class="note">Posting a reply also approves her comment.{comment.notify ? ' She asked to be emailed when you reply.' : ''}</p>
+              </form>
+              <div class="actions">
+                {comment.status === 'pending' && (
+                  <form method="post" action="/api/comments/manage">
+                    <input type="hidden" name="id" value={comment.id} />
+                    <input type="hidden" name="token" value={token} />
+                    <button class="btn btn-gold" name="action" value="approve" type="submit">Approve without replying</button>
+                  </form>
+                )}
+                <form method="post" action="/api/comments/manage" class:list={[{ 'is-focus': wantsDelete }]}>
+                  <input type="hidden" name="id" value={comment.id} />
+                  <input type="hidden" name="token" value={token} />
+                  <button class="btn btn-outline" name="action" value="delete" type="submit">Delete this comment</button>
+                </form>
+              </div>
+            </>
+          )}
+          {comment.status === 'deleted' && (
+            <form method="post" action="/api/comments/manage">
+              <input type="hidden" name="id" value={comment.id} />
+              <input type="hidden" name="token" value={token} />
+              <button class="btn btn-gold" name="action" value="approve" type="submit">Restore and approve it</button>
+            </form>
+          )}
+        </>
+      )}
+    </div>
+  </section>
+</Base>
+
+<style>
+  .manage { max-width: 720px; }
+  .meta { color: var(--ink-3); font-size: .95rem; margin: 1rem 0 1.25rem; }
+  .meta a { color: var(--gold); text-decoration: underline; }
+  .meta b { color: var(--ink); }
+  .the-comment { white-space: pre-wrap; border-left: 4px solid var(--gold); background: var(--bg-3); padding: 1.1rem 1.25rem; margin: 0 0 2rem; color: var(--ink); font-size: 1.1rem; line-height: 1.7; }
+  .replied { border: 1px solid var(--line-2); padding: 1rem 1.25rem; margin-bottom: 2rem; }
+  .replied .k { font-family: var(--head); letter-spacing: .18em; text-transform: uppercase; font-size: .75rem; color: var(--gold); margin-bottom: .5rem; }
+  .replied p { white-space: pre-wrap; color: var(--ink-2); margin-bottom: .5rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+  .actions .is-focus .btn { border-color: var(--fuchsia); background: var(--fuchsia); color: #fff; }
+</style>

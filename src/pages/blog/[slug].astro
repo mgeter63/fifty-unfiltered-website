@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Newsletter from '../../components/Newsletter.astro';
+import Comments from '../../components/Comments.astro';
 import { getPosts, formatDate, SITE, absoluteUrl, slugify } from '../../lib/posts';
 
 export async function getStaticPaths() {
@@ -69,6 +70,9 @@ const schema = {
         <a href={`mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(url)}`}>Email</a>
       </div>
       <p style="margin-top:2rem;"><a class="btn btn-outline" href="/blog">&#8592; Back to the Blog</a></p>
+    </div>
+    <div style="padding-left:var(--gutter);padding-right:var(--gutter);">
+      <Comments slug={post.data.slug} />
     </div>
   </article>
   <Newsletter kicker="Enjoyed this?" heading="Get the next one <em>in your inbox.</em>" />

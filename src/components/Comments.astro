@@ -1,0 +1,156 @@
+---
+/** Comment section at the bottom of every post. Comments load from /api/comments and only show after Mary approves them. */
+import { LIMITS } from '../lib/comments';
+
+interface Props {
+  slug: string;
+}
+const { slug } = Astro.props;
+---
+
+<section class="comments" id="comments" data-slug={slug} aria-labelledby="comments-h">
+  <h2 id="comments-h">Join the <em>conversation</em></h2>
+  <div class="c-list" aria-live="polite">
+    <p class="c-empty">Loading comments...</p>
+  </div>
+
+  <form class="form c-form" novalidate>
+    <h3>Leave a comment</h3>
+    <div class="ff"><label for="c-name">First name</label><input id="c-name" name="name" type="text" autocomplete="given-name" maxlength={LIMITS.name} required /></div>
+    <div class="ff">
+      <label for="c-email">Email</label>
+      <input id="c-email" name="email" type="email" autocomplete="email" required />
+      <small>Never shown on the site.</small>
+    </div>
+    <div class="ff"><label for="c-comment">Your comment</label><textarea id="c-comment" name="comment" maxlength={LIMITS.body} placeholder="Say it plain. Nobody is judging you here." required></textarea></div>
+    <label class="c-check"><input type="checkbox" name="notify" checked /> Email me when Mary replies</label>
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0;" />
+    <button type="submit" class="btn btn-fuchsia">Post comment</button>
+    <div class="toast" role="status" aria-live="polite"></div>
+    <p class="note">Comments show after Mary reads them.</p>
+  </form>
+</section>
+
+<script>
+  const root = document.getElementById('comments');
+  if (root) {
+    const slug = root.dataset.slug ?? '';
+    const list = root.querySelector<HTMLElement>('.c-list')!;
+    const form = root.querySelector<HTMLFormElement>('.c-form')!;
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const toast = form.querySelector<HTMLElement>('.toast')!;
+
+    type C = { id: number; name: string; body: string; isAuthor: boolean; date: string; replies: C[] };
+    const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+    // Built with textContent only, so nothing a reader types can run as code on the page.
+    const card = (c: C) => {
+      const el = document.createElement('article');
+      el.className = c.isAuthor ? 'c-item c-author' : 'c-item';
+      el.id = `comment-${c.id}`;
+      const head = document.createElement('div');
+      head.className = 'c-head';
+      const who = document.createElement('b');
+      who.textContent = c.name;
+      head.append(who);
+      if (c.isAuthor) {
+        const tag = document.createElement('span');
+        tag.className = 'tag';
+        tag.textContent = 'Author';
+        head.append(tag);
+      }
+      const when = document.createElement('time');
+      when.dateTime = c.date;
+      when.textContent = fmt(c.date);
+      head.append(when);
+      const body = document.createElement('p');
+      body.textContent = c.body;
+      el.append(head, body);
+      c.replies.forEach((r) => el.append(card(r)));
+      return el;
+    };
+
+    const empty = (text: string) => {
+      const p = document.createElement('p');
+      p.className = 'c-empty';
+      p.textContent = text;
+      list.replaceChildren(p);
+    };
+
+    fetch(`/api/comments?slug=${encodeURIComponent(slug)}`, { headers: { Accept: 'application/json' } })
+      .then((r) => r.json())
+      .then((out) => {
+        const items: C[] = out.comments ?? [];
+        if (!out.ok) empty('Comments could not be loaded right now.');
+        else if (items.length === 0) empty('No comments yet. Be the first to say something.');
+        else {
+          list.replaceChildren(...items.map(card));
+          if (location.hash.startsWith('#comment-')) document.querySelector(location.hash)?.scrollIntoView();
+        }
+      })
+      .catch(() => empty('Comments could not be loaded right now.'));
+
+    const show = (text: string, ok: boolean) => {
+      toast.textContent = text;
+      toast.className = 'toast show ' + (ok ? 'ok' : 'err');
+    };
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const payload = {
+        slug,
+        name: String(data.get('name') ?? ''),
+        email: String(data.get('email') ?? ''),
+        comment: String(data.get('comment') ?? ''),
+        notify: data.get('notify') ? 'true' : 'false',
+        website: String(data.get('website') ?? ''),
+      };
+      if (!payload.name.trim() || !payload.email.trim() || !payload.comment.trim()) {
+        show('Please add your name, your email, and your comment.', false);
+        return;
+      }
+      btn.disabled = true;
+      btn.textContent = 'Posting...';
+      try {
+        const res = await fetch('/api/comments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const out = await res.json().catch(() => ({}));
+        if (res.ok && out.ok) {
+          show(out.message || 'Thank you! Your comment will appear once Mary approves it.', true);
+          form.reset();
+        } else show(out.message || 'Your comment could not be posted. Please try again.', false);
+      } catch {
+        show('Could not reach the server. Please try again.', false);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Post comment';
+      }
+    });
+  }
+</script>
+
+<style is:global>
+  /* Global (not scoped) because the comment cards are created by the script after the page loads. Every rule is limited to .comments. */
+  .comments { max-width: 720px; margin: 0 auto; padding: 0 0 clamp(2.5rem, 6vw, 4rem); border-top: 1px solid var(--line); padding-top: 2.5rem; }
+  .comments h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); margin-bottom: 1.5rem; }
+  .comments h2 em { font-style: normal; color: var(--gold); }
+  .comments .c-empty { color: var(--ink-3); margin-bottom: 2rem; }
+  .comments .c-list { margin-bottom: 2.5rem; }
+  .comments .c-item { background: var(--bg-3); border: 1px solid var(--line); padding: 1.1rem 1.25rem; margin-bottom: 1rem; scroll-margin-top: calc(var(--nav-h) + 1rem); }
+  .comments .c-item .c-item { margin: 1rem 0 0; background: var(--bg); }
+  .comments .c-author { border-left: 4px solid var(--gold); }
+  .comments .c-head { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-bottom: .5rem; }
+  .comments .c-head b { font-family: var(--head); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); }
+  .comments .c-head time { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); }
+  .comments .c-item p { white-space: pre-wrap; overflow-wrap: anywhere; color: var(--ink-2); font-size: 1.05rem; line-height: 1.7; margin: 0; }
+  .comments .c-form { background: var(--bg-3); border: 1px solid var(--line); padding: 1.5rem; }
+  .comments .c-form h3 { font-size: 1.4rem; margin-bottom: 1.25rem; }
+  .comments .c-form small { display: block; margin-top: .35rem; color: var(--ink-3); font-size: .85rem; }
+  .comments .c-form textarea { min-height: 130px; }
+  .comments .c-check { display: flex; align-items: center; gap: .6rem; font-family: var(--body); font-size: 1rem; letter-spacing: 0; text-transform: none; color: var(--ink-2); margin: 0 0 1.25rem; cursor: pointer; }
+  .comments .c-check input { width: 1.2rem; height: 1.2rem; accent-color: var(--fuchsia); }
+</style>
