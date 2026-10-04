@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const { title, category, date, readTime, metaDescription, coverImage, coverAlt } = post.data;
+const { title, seoTitle, category, date, readTime, metaDescription, coverImage, coverAlt } = post.data;
 const image = coverImage ?? SITE.defaultImage;
 const url = absoluteUrl(`/blog/${post.data.slug}`);
 
@@ -32,7 +32,7 @@ const schema = {
 ---
 
 <Base
-  title={`${title} | Fifty and Unfiltered`}
+  title={seoTitle ?? `${title} | Fifty and Unfiltered`}
   description={metaDescription}
   image={image}
   imageAlt={coverAlt ?? title}
@@ -73,3 +73,55 @@ const schema = {
   </article>
   <Newsletter kicker="Enjoyed this?" heading="Get the next one <em>in your inbox.</em>" />
 </Base>
+
+<script>
+  // Swipeable image carousel for any post that includes a .story-carousel block.
+  // Phones swipe the track natively (scroll snap); the arrows and dots step one slide at a time.
+  document.querySelectorAll<HTMLElement>('.story-carousel').forEach((root) => {
+    const track = root.querySelector<HTMLElement>('.story-track');
+    const slides = Array.from(root.querySelectorAll<HTMLElement>('.story-slide'));
+    const dotsWrap = root.querySelector<HTMLElement>('.story-dots');
+    const prev = root.querySelector<HTMLButtonElement>('.story-prev');
+    const next = root.querySelector<HTMLButtonElement>('.story-next');
+    if (!track || slides.length === 0) return;
+    const dots = slides.map((_, k) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', `Slide ${k + 1}`);
+      d.addEventListener('click', () => go(k));
+      dotsWrap?.appendChild(d);
+      return d;
+    });
+    let i = 0;
+    let target = -1; // slide an arrow or dot is moving to, so quick repeat clicks keep counting
+    const paint = () => {
+      dots.forEach((d, k) => d.setAttribute('aria-current', String(k === i)));
+      if (prev) prev.disabled = i <= 0;
+      if (next) next.disabled = i >= slides.length - 1;
+    };
+    const go = (n: number) => {
+      const k = Math.max(0, Math.min(slides.length - 1, n));
+      target = k;
+      i = k;
+      paint();
+      track.scrollTo({ left: slides[k].offsetLeft - track.offsetLeft, behavior: 'smooth' });
+    };
+    const update = () => {
+      const w = slides[0].offsetWidth || 1;
+      const k = Math.round(track.scrollLeft / w);
+      if (target >= 0 && k !== target) return;
+      target = -1;
+      i = k;
+      paint();
+    };
+    prev?.addEventListener('click', () => go(i - 1));
+    next?.addEventListener('click', () => go(i + 1));
+    track.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); go(i - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(i + 1); }
+    });
+    ['touchstart', 'wheel'].forEach((ev) => track.addEventListener(ev, () => { target = -1; }, { passive: true }));
+    track.addEventListener('scroll', () => window.requestAnimationFrame(update), { passive: true });
+    paint();
+  });
+</script>

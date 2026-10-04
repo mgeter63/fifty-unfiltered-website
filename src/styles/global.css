@@ -255,6 +255,22 @@ button{cursor:pointer;border:none;outline:none;font-family:inherit;background:no
 .share{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--line);font-family:var(--head);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);}
 .share a{color:var(--ink);border:1px solid var(--line-2);padding:.45rem .8rem;transition:all .2s;}
 .share a:hover{border-color:var(--fuchsia);background:var(--fuchsia);color:#fff;}
+/* swipeable image carousel inside a post (.story-carousel); swipe on phones, arrows on desktop */
+.story-carousel{margin:2.5rem 0;}
+.prose .story-carousel h3{font-size:.85rem;font-weight:500;letter-spacing:.22em;color:var(--gold);margin:0 0 1rem;display:flex;align-items:center;gap:.75rem;}
+.prose .story-carousel h3::before{content:'';width:2rem;height:2px;background:var(--fuchsia);}
+.story-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch;border:1px solid var(--line);background:var(--bg-3);}
+.story-track::-webkit-scrollbar{display:none;}
+.story-slide{flex:0 0 100%;scroll-snap-align:start;scroll-snap-stop:always;display:flex;justify-content:center;}
+.prose .story-slide img{margin:0;border:0;width:100%;max-width:480px;height:auto;}
+.story-ctrl{display:flex;align-items:center;justify-content:center;gap:1rem;margin-top:1.25rem;}
+.story-ctrl > button{width:44px;height:44px;border:1px solid var(--line-2);color:var(--ink);font-size:1.2rem;display:grid;place-items:center;transition:border-color .2s,color .2s,opacity .2s;}
+.story-ctrl > button:hover{border-color:var(--gold);color:var(--gold);}
+.story-ctrl > button:disabled{opacity:.35;cursor:default;border-color:var(--line-2);color:var(--ink);}
+.story-dots{display:flex;gap:.5rem;}
+.story-dots button{width:10px;height:10px;border:0;padding:0;background:var(--line-2);}
+.story-dots button[aria-current="true"]{background:var(--fuchsia);}
+@media(prefers-reduced-motion:reduce){.story-track{scroll-behavior:auto;}}
 
 /* ---------- about / contact / legal ---------- */
 .about-hero{display:grid;gap:2rem;grid-template-columns:1fr;padding:clamp(2.5rem,6vw,5rem) var(--gutter);max-width:var(--max);margin:0 auto;align-items:center;}

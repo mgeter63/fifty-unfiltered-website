@@ -10,6 +10,8 @@ const posts = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './content/posts' }),
   schema: z.object({
     title: z.string().min(1),
+    /** Optional title for Google and social previews. Falls back to the headline. */
+    seoTitle: z.string().min(1).optional(),
     slug: z
       .string()
       .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'slug must be lowercase words separated by hyphens'),
