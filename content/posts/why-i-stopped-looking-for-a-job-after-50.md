@@ -73,4 +73,6 @@ And there is a number out there that proves I am not the only one. I will show y
 
 Now tell me: did you stop looking for a job too? What was the real reason? Say it in the comments. Nobody is judging you here.
 
-**Keep reading:** [Starting Over Financially at 55: What Nobody Tells You](/blog/starting-over-financially-at-55-what-nobody-tells-you)
+**Keep reading:** [Part 2: The Number That Proves I Am Not the Only One](/blog/black-women-over-50-starting-businesses)
+
+**Also read:** [Starting Over Financially at 55: What Nobody Tells You](/blog/starting-over-financially-at-55-what-nobody-tells-you)

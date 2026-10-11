@@ -9,7 +9,7 @@ metaDescription: "I ran my own business, went to work for others after my divorc
 readTime: "5 min read"
 coverImage: "/images/built-our-own-tables-cover.jpg"
 coverAlt: "A confident Black woman in her 50s with short silver natural hair, in a plum blouse, leads a meeting with three smiling Black women in their 50s and 60s around a marble table in her bright office."
-draft: true
+draft: false
 ---
 
 In my last post, I told you I stopped looking for a job. Hell yes, I did. And I promised you a number that proves I am not the only one.
