@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const { title, seoTitle, category, date, readTime, metaDescription, coverImage, coverAlt } = post.data;
+const { title, seoTitle, category, date, readTime, metaDescription, coverImage, coverAlt, theme } = post.data;
 const image = coverImage ?? SITE.defaultImage;
 const url = absoluteUrl(`/blog/${post.data.slug}`);
 
@@ -41,7 +41,7 @@ const schema = {
   publishedTime={date.toISOString()}
   schema={schema}
 >
-  <article>
+  <article data-theme={theme}>
     <div class="post-top wrap">
       <div class="crumbs" data-reveal>
         <a class="tag" href={`/blog#${slugify(category)}`}>{category}</a>

@@ -22,6 +22,8 @@ const posts = defineCollection({
     readTime: z.string().min(1),
     coverImage: z.string().optional(),
     coverAlt: z.string().optional(),
+    /** Optional color theme for a single post, e.g. "newday". */
+    theme: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });
